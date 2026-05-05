@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Contact | CardioSense Research</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Rajdhani:wght@500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="css/style.css">
+<style>
+/* ── Contact layout ─────────────────────────────────────── */
+.contact-layout{
+    display:grid;
+    grid-template-columns:1fr 420px;
+    gap:2rem;
+    align-items:start;
+}
+@media(max-width:900px){
+    .contact-layout{grid-template-columns:1fr}
+}
+/* ── Contact Form ── */
+.contact-form-card{
+    background:var(--bg-card);
+    border:1px solid var(--border);
+    border-radius:var(--r);
+    padding:2.5rem;
+    position:sticky;
+    top:90px;
+}
+.form-group{margin-bottom:1.4rem}
+.form-label{
+    display:block;
+    font-size:0.83rem;
+    font-weight:600;
+    color:rgba(238,242,255,0.85);
+    margin-bottom:0.5rem;
+}
+.form-label span{color:var(--red)}
+.form-control{
+    width:100%;
+    background:rgba(255,255,255,0.04);
+    border:1px solid rgba(255,255,255,0.1);
+    border-radius:10px;
+    padding:11px 16px;
+    font-size:0.9rem;
+    color:#fff;
+    font-family:'Inter',sans-serif;
+    transition:border-color 0.2s ease,background 0.2s ease,box-shadow 0.2s ease;
+    outline:none;
+    box-sizing:border-box;
+}
+.form-control::placeholder{color:rgba(238,242,255,0.25)}
+.form-control:focus{
+    border-color:rgba(67,97,238,0.6);
+    background:rgba(67,97,238,0.06);
+    box-shadow:0 0 0 3px rgba(67,97,238,0.12);
+}
+textarea.form-control{resize:vertical;min-height:130px;line-height:1.6}
+select.form-control option{background:var(--bg-card);color:#fff}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+@media(max-width:500px){.form-row{grid-template-columns:1fr}}
+.btn-send{
+    width:100%;
+    padding:13px;
+    border-radius:10px;
+    border:none;
+    background:linear-gradient(135deg,var(--blue),var(--purple));
+    color:#fff;
+    font-size:0.95rem;
+    font-weight:700;
+    font-family:'Inter',sans-serif;
+    cursor:pointer;
+    transition:var(--transition);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:0.6rem;
+    letter-spacing:0.02em;
+}
+.btn-send:hover{filter:brightness(1.15);transform:translateY(-2px);box-shadow:0 8px 24px rgba(67,97,238,0.35)}
+.btn-send:active{transform:translateY(0)}
+/* ── Contact Info Panel ── */
+.contact-info-wrap{display:flex;flex-direction:column;gap:1.5rem}
+.contact-info-card{
+    background:var(--bg-card);
+    border:1px solid var(--border);
+    border-radius:var(--r);
+    overflow:hidden;
+    transition:var(--transition);
+}
+.contact-info-card:hover{border-color:rgba(255,255,255,0.1);transform:translateX(4px)}
+.contact-card-top{
+    padding:1.5rem;
+    display:flex;
+    align-items:center;
+    gap:1.2rem;
+}
+.contact-card-icon{
+    width:48px;height:48px;
+    border-radius:12px;
+    display:flex;align-items:center;justify-content:center;
+    flex-shrink:0;
+    font-size:1.1rem;
+}
+.contact-card-text{flex:1}
+.contact-card-text h4{font-size:0.95rem;font-weight:700;color:#fff;margin-bottom:0.25rem}
+.contact-card-text p{font-size:0.83rem;color:rgba(238,242,255,0.6);line-height:1.5}
+.contact-card-text a{color:inherit;text-decoration:none;transition:color 0.2s}
+.contact-card-text a:hover{color:#fff}
+.contact-divider{height:1px;background:var(--border)}
+/* ── Team quick contacts ── */
+.team-contacts{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r);padding:1.5rem}
+.team-contact-item{
+    display:flex;
+    align-items:center;
+    gap:1rem;
+    padding:0.8rem 0;
+    border-bottom:1px solid rgba(255,255,255,0.04);
+    transition:var(--transition);
+}
+.team-contact-item:last-child{border-bottom:none;padding-bottom:0}
+.team-contact-item:hover{padding-left:4px}
+.tc-avatar{
+    width:40px;height:40px;
+    border-radius:50%;
+    object-fit:cover;
+    object-position:top;
+    flex-shrink:0;
+    border:2px solid var(--border);
+}
+.tc-info{flex:1}
+.tc-name{font-size:0.88rem;font-weight:600;color:rgba(238,242,255,0.9)}
+.tc-comp{font-size:0.75rem;color:var(--text-muted)}
+.tc-badge{
+    display:inline-flex;
+    align-items:center;
+    padding:2px 8px;
+    border-radius:10px;
+    font-size:0.68rem;
+    font-weight:700;
+    letter-spacing:0.04em;
+}
+/* ── Map placeholder ── */
+.map-card{
+    background:var(--bg-card);
+    border:1px solid var(--border);
+    border-radius:var(--r);
+    overflow:hidden;
+}
+.map-placeholder{
+    height:180px;
+    background:linear-gradient(135deg,rgba(67,97,238,0.1),rgba(0,180,216,0.05));
+    display:flex;flex-direction:column;
+    align-items:center;justify-content:center;
+    gap:0.8rem;
+    border-bottom:1px solid var(--border);
+    position:relative;
+    overflow:hidden;
+}
+.map-grid{
+    position:absolute;
+    inset:0;
+    background-image:
+        linear-gradient(rgba(67,97,238,0.06) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(67,97,238,0.06) 1px,transparent 1px);
+    background-size:30px 30px;
+}
+.map-pin{
+    font-size:2.5rem;
+    color:var(--red);
+    filter:drop-shadow(0 0 12px rgba(230,57,70,0.6));
+    position:relative;z-index:1;
+    animation:pin-bounce 2s ease-in-out infinite;
+}
+@keyframes pin-bounce{
+    0%,100%{transform:translateY(0)}
+    50%{transform:translateY(-8px)}
+}
+.map-caption{font-size:0.82rem;color:rgba(238,242,255,0.6);position:relative;z-index:1;text-align:center}
+.map-body{padding:1rem 1.5rem}
+.map-address{font-size:0.85rem;color:rgba(238,242,255,0.7);line-height:1.6}
+/* ── FAQ ── */
+.faq-item{
+    background:var(--bg-card);
+    border:1px solid var(--border);
+    border-radius:10px;
+    margin-bottom:0.7rem;
+    overflow:hidden;
+}
+.faq-q{
+    padding:1rem 1.5rem;
+    font-size:0.9rem;
+    font-weight:600;
+    color:rgba(238,242,255,0.9);
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:1rem;
+    user-select:none;
+    transition:background 0.2s;
+}
+.faq-q:hover{background:rgba(255,255,255,0.03)}
+.faq-q .faq-arrow{font-size:0.75rem;color:var(--text-muted);transition:transform 0.3s ease;flex-shrink:0}
+.faq-a{
+    max-height:0;
+    overflow:hidden;
+    transition:max-height 0.4s ease,padding 0.3s ease;
+    font-size:0.85rem;
+    color:rgba(238,242,255,0.65);
+    line-height:1.7;
+    padding:0 1.5rem;
+}
+.faq-item.open .faq-a{max-height:300px;padding:0.5rem 1.5rem 1.2rem}
+.faq-item.open .faq-arrow{transform:rotate(180deg);color:var(--blue)}
+/* ── Section sub-heading ── */
+.sub-heading{
+    font-size:1.1rem;
+    font-weight:700;
+    color:#fff;
+    margin-bottom:1rem;
+    display:flex;
+    align-items:center;
+    gap:0.6rem;
+}
+.sub-heading i{font-size:0.95rem}
+</style>
+</head>
+<body>
+
+<!-- ══════════════ NAVBAR ══════════════ -->
+<nav class="navbar">
+  <div class="navbar-inner">
+    <a href="index.html" class="nav-brand"><span class="heart">❤</span> CardioSense <span class="nav-badge">25-26J-337</span></a>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="domain.html">Domain</a>
+      <div class="nav-dropdown">
+        <button class="nav-drop-btn">Milestones <span class="arrow">▾</span></button>
+        <div class="dropdown-menu">
+          <a href="milestones.html#proposal">Project Proposal <span class="drop-meta">Aug 2025</span></a>
+          <div class="dropdown-divider"></div>
+          <a href="milestones.html#pp1">Progress Presentation I <span class="drop-meta">Nov 2025</span></a>
+          <div class="dropdown-divider"></div>
+          <a href="milestones.html#pp2">Progress Presentation II <span class="drop-meta">Mar 2026</span></a>
+          <div class="dropdown-divider"></div>
+          <a href="milestones.html#final">Final Assessment <span class="drop-meta">May 2026</span></a>
+        </div>
+      </div>
+      <a href="documents.html">Documents</a>
+      <a href="presentations.html">Presentations</a>
+      <a href="about.html">About Us</a>
+      <a href="contact.html" class="nav-cta active">Contact</a>
+    </div>
+    <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="page-content">
+
+  <!-- ══════════════ PAGE HERO ══════════════ -->
+  <section class="page-hero">
+    <div class="container">
+      <div class="page-hero-label"><i class="fa fa-envelope"></i> Get in Touch</div>
+      <h1 class="page-hero-title">Contact <span class="gradient-text">CardioSense</span></h1>
+      <p class="page-hero-sub">Have questions about our research, collaboration opportunities, or want to learn more about the CardioSense system? Reach out to the team.</p>
+    </div>
+  </section>
+
+  <!-- ══════════════ MAIN CONTENT ══════════════ -->
+  <section style="padding:0 0 5rem">
+    <div class="container">
+
+      <div class="contact-layout">
+
+        <!-- ══ LEFT — INFO ══ -->
+        <div class="contact-info-wrap">
+
+          <!-- Info cards -->
+          <div class="contact-info-card reveal">
+            <div class="contact-card-top">
+              <div class="contact-card-icon" style="background:rgba(230,57,70,0.1);color:var(--red)"><i class="fa fa-map-marker-alt"></i></div>
+              <div class="contact-card-text">
+                <h4>Location</h4>
+                <p>Sri Lanka Institute of Information Technology<br>New Kandy Road, Malabe, Sri Lanka</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-info-card reveal">
+            <div class="contact-card-top">
+              <div class="contact-card-icon" style="background:rgba(67,97,238,0.1);color:var(--blue)"><i class="fa fa-envelope"></i></div>
+              <div class="contact-card-text">
+                <h4>Research Supervisor</h4>
+                <p>Mrs. Manori Gamage<br>Department of Information Technology, SLIIT</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-info-card reveal">
+            <div class="contact-card-top">
+              <div class="contact-card-icon" style="background:rgba(6,214,160,0.1);color:var(--green)"><i class="fa fa-tag"></i></div>
+              <div class="contact-card-text">
+                <h4>Project Reference</h4>
+                <p style="font-family:'Fira Code',monospace;font-size:0.92rem">25-26J-337 &nbsp;/&nbsp; SLIIT Faculty of Computing</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Map -->
+          <div class="map-card reveal">
+            <div class="map-placeholder">
+              <div class="map-grid"></div>
+              <div class="map-pin"><i class="fa fa-map-pin"></i></div>
+              <div class="map-caption">SLIIT Main Campus<br><strong style="color:rgba(238,242,255,0.85)">New Kandy Rd, Malabe 10115</strong></div>
+            </div>
+            <div class="map-body">
+              <div class="map-address">
+                <i class="fa fa-location-dot" style="color:var(--red);margin-right:0.5rem"></i>
+                Sri Lanka Institute of Information Technology (SLIIT), New Kandy Road, Malabe, Sri Lanka 10115
+              </div>
+              <div style="margin-top:0.8rem">
+                <a href="https://maps.google.com/?q=SLIIT+Malabe" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:var(--blue);text-decoration:none;transition:color 0.2s" onmouseover="this.style.color='var(--cyan)'" onmouseout="this.style.color='var(--blue)'">
+                  <i class="fa fa-external-link-alt"></i> Open in Google Maps
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Team contacts -->
+          <div class="reveal">
+            <div class="sub-heading"><i class="fa fa-id-card" style="color:var(--blue)"></i> Team Members</div>
+            <div class="team-contacts">
+              <div class="team-contact-item">
+                <img src="Profile/Daniru Malalagama.jpeg" alt="Daniru" class="tc-avatar" onerror="this.style.display='none'">
+                <div class="tc-info">
+                  <div class="tc-name">Daniru Malalagama</div>
+                  <div class="tc-comp">Component 1 — Cardiovascular Risk Prediction</div>
+                </div>
+                <span class="tc-badge badge-c1">IT22126856</span>
+              </div>
+              <div class="team-contact-item">
+                <img src="Profile/Sahan Athukorala.jpeg" alt="Sahan" class="tc-avatar" onerror="this.style.display='none'">
+                <div class="tc-info">
+                  <div class="tc-name">Sahan Athukorala</div>
+                  <div class="tc-comp">Component 2 — Chest X-Ray Analysis</div>
+                </div>
+                <span class="tc-badge badge-c2">IT22296146</span>
+              </div>
+              <div class="team-contact-item">
+                <img src="Profile/Radeesa Randini.jpeg" alt="Radeesa" class="tc-avatar" onerror="this.style.display='none'">
+                <div class="tc-info">
+                  <div class="tc-name">Radeesa Randini</div>
+                  <div class="tc-comp">Component 3 — Personalised Recommendations</div>
+                </div>
+                <span class="tc-badge badge-c3">IT22638854</span>
+              </div>
+              <div class="team-contact-item">
+                <img src="Profile/Shehan Kuruneru.jpeg" alt="Shehan" class="tc-avatar" onerror="this.style.display='none'">
+                <div class="tc-info">
+                  <div class="tc-name">Shehan Kuruneru</div>
+                  <div class="tc-comp">Component 4 — Mental Health Monitoring</div>
+                </div>
+                <span class="tc-badge badge-c4">IT22230706</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ -->
+          <div class="reveal">
+            <div class="sub-heading"><i class="fa fa-question-circle" style="color:var(--cyan)"></i> Frequently Asked Questions</div>
+
+            <div class="faq-item">
+              <div class="faq-q">Is the CardioSense system available for clinical use? <i class="fa fa-chevron-down faq-arrow"></i></div>
+              <div class="faq-a">CardioSense is currently a research prototype developed as part of an undergraduate research project at SLIIT. It is not yet approved or deployed for clinical use. All results are for research and demonstration purposes only.</div>
+            </div>
+            <div class="faq-item">
+              <div class="faq-q">Can I use the research documents for my own study? <i class="fa fa-chevron-down faq-arrow"></i></div>
+              <div class="faq-a">Yes — the research reports are shared for academic reference. Please cite each document appropriately using the citation format provided on the Documents page. Contact the team for clarification on usage rights.</div>
+            </div>
+            <div class="faq-item">
+              <div class="faq-q">How can I collaborate with the CardioSense team? <i class="fa fa-chevron-down faq-arrow"></i></div>
+              <div class="faq-a">We welcome academic collaboration, feedback from clinicians, and dataset sharing for validation purposes. Use the contact form to reach us with collaboration proposals, and we will respond through SLIIT channels.</div>
+            </div>
+            <div class="faq-item">
+              <div class="faq-q">Which datasets does CardioSense use? <i class="fa fa-chevron-down faq-arrow"></i></div>
+              <div class="faq-a">Component 1 uses the UCI Heart Disease Dataset. Component 2 uses the CheXpert chest X-ray dataset. Components 3 and 4 use proprietary compiled datasets with appropriate ethical clearance.</div>
+            </div>
+            <div class="faq-item">
+              <div class="faq-q">Is the source code publicly available? <i class="fa fa-chevron-down faq-arrow"></i></div>
+              <div class="faq-a">The project source code is a private academic submission. A code release may be considered post-assessment completion. Contact the supervisor or team for academic access requests.</div>
+            </div>
+
+          </div>
+
+        </div><!-- /info-wrap -->
+
+        <!-- ══ RIGHT — FORM ══ -->
+        <div>
+          <div class="contact-form-card reveal">
+            <h3 style="color:#fff;margin-bottom:0.4rem;font-size:1.3rem;font-weight:700"><i class="fa fa-paper-plane" style="color:var(--blue);margin-right:0.5rem"></i> Send a Message</h3>
+            <p style="font-size:0.83rem;color:var(--text-muted);margin-bottom:1.8rem">We'll get back to you through official SLIIT channels.</p>
+
+            <form id="contactForm" novalidate>
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label" for="firstName">First Name <span>*</span></label>
+                  <input type="text" id="firstName" class="form-control" placeholder="Kamal" required>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="lastName">Last Name <span>*</span></label>
+                  <input type="text" id="lastName" class="form-control" placeholder="Perera" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="email">Email Address <span>*</span></label>
+                <input type="email" id="email" class="form-control" placeholder="kamal@example.com" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="affiliation">Affiliation</label>
+                <input type="text" id="affiliation" class="form-control" placeholder="University / Institution / Organization">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="subject">Subject <span>*</span></label>
+                <select id="subject" class="form-control" required>
+                  <option value="" disabled selected>Select a topic…</option>
+                  <option>Research Enquiry</option>
+                  <option>Collaboration Proposal</option>
+                  <option>Dataset / Data Access</option>
+                  <option>Component 1 — Risk Prediction</option>
+                  <option>Component 2 — CXR Analysis</option>
+                  <option>Component 3 — Recommendations</option>
+                  <option>Component 4 — Mental Health Bot</option>
+                  <option>General Question</option>
+                  <option>Other</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="message">Message <span>*</span></label>
+                <textarea id="message" class="form-control" placeholder="Describe your enquiry, collaboration idea, or question in detail…" required></textarea>
+              </div>
+
+              <div style="background:rgba(67,97,238,0.06);border:1px solid rgba(67,97,238,0.18);border-radius:8px;padding:0.8rem 1rem;margin-bottom:1.5rem;font-size:0.78rem;color:rgba(238,242,255,0.6);display:flex;gap:0.6rem;align-items:flex-start">
+                <i class="fa fa-info-circle" style="color:var(--blue);margin-top:2px;flex-shrink:0"></i>
+                <span>This form is for research enquiries only. For academic submissions or assessment queries, please contact SLIIT directly through official channels.</span>
+              </div>
+
+              <button type="submit" class="btn-send">
+                <i class="fa fa-paper-plane"></i> Send Message
+              </button>
+            </form>
+
+            <!-- Quick links — inside the sticky card to avoid scroll overlap -->
+            <div style="margin-top:1.2rem;display:flex;flex-direction:column;gap:0.6rem">
+              <a href="documents.html" style="display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:10px;padding:0.8rem 1.1rem;text-decoration:none;color:rgba(238,242,255,0.75);font-size:0.86rem;font-weight:500;transition:var(--transition)" onmouseover="this.style.borderColor='rgba(255,255,255,0.12)';this.style.background='rgba(255,255,255,0.06)';this.style.color='#fff'" onmouseout="this.style.borderColor='';this.style.background='rgba(255,255,255,0.03)';this.style.color=''">
+                <span><i class="fa fa-file-alt" style="color:var(--red);margin-right:0.7rem"></i> Download Research Documents</span>
+                <i class="fa fa-arrow-right" style="color:var(--text-muted)"></i>
+              </a>
+              <a href="presentations.html" style="display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:10px;padding:0.8rem 1.1rem;text-decoration:none;color:rgba(238,242,255,0.75);font-size:0.86rem;font-weight:500;transition:var(--transition)" onmouseover="this.style.borderColor='rgba(255,255,255,0.12)';this.style.background='rgba(255,255,255,0.06)';this.style.color='#fff'" onmouseout="this.style.borderColor='';this.style.background='rgba(255,255,255,0.03)';this.style.color=''">
+                <span><i class="fa fa-file-powerpoint" style="color:var(--purple);margin-right:0.7rem"></i> View Project Presentations</span>
+                <i class="fa fa-arrow-right" style="color:var(--text-muted)"></i>
+              </a>
+              <a href="about.html" style="display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:10px;padding:0.8rem 1.1rem;text-decoration:none;color:rgba(238,242,255,0.75);font-size:0.86rem;font-weight:500;transition:var(--transition)" onmouseover="this.style.borderColor='rgba(255,255,255,0.12)';this.style.background='rgba(255,255,255,0.06)';this.style.color='#fff'" onmouseout="this.style.borderColor='';this.style.background='rgba(255,255,255,0.03)';this.style.color=''">
+                <span><i class="fa fa-users" style="color:var(--blue);margin-right:0.7rem"></i> Meet the Research Team</span>
+                <i class="fa fa-arrow-right" style="color:var(--text-muted)"></i>
+              </a>
+            </div>
+
+          </div><!-- /form-card -->
+
+        </div><!-- /right col -->
+
+      </div><!-- /contact-layout -->
+
+    </div>
+  </section>
+
+</div><!-- /page-content -->
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-bottom" style="padding-top:2rem;border-top:1px solid var(--border)">
+      <a href="index.html" class="nav-brand"><span class="heart">❤</span> CardioSense <span class="nav-badge">25-26J-337</span></a>
+      <span style="font-size:0.82rem;color:var(--text-muted)">© <span id="year"></span> SLIIT Research Project. Supervisor: Mrs. Manori Gamage</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+/* ── FAQ Accordion ─────────────────────────────────────── */
+document.querySelectorAll('.faq-q').forEach(q => {
+    q.addEventListener('click', () => {
+        const item = q.closest('.faq-item');
+        const wasOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+        if (!wasOpen) item.classList.add('open');
+    });
+});
+</script>
+</body>
+</html>

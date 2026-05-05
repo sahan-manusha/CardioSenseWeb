@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="description" content="CardioSense — AI-Powered Cardiovascular Health Monitoring System. SLIIT Research Project 25-26J-337.">
+<title>CardioSense | AI Cardiovascular Health System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Rajdhani:wght@500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="css/style.css">
+<style>
+.hero-section{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden}
+#particleCanvas{position:absolute;inset:0;z-index:0;pointer-events:none}
+#ecgCanvas{position:absolute;bottom:0;left:0;right:0;height:200px;z-index:1;opacity:0.6;pointer-events:none}
+.hero-content{position:relative;z-index:2;text-align:center;width:100%;padding:0 1.5rem}
+.cursor{display:inline-block;width:3px;height:1.1em;background:var(--red);margin-left:2px;vertical-align:text-bottom;animation:blink 1s infinite}
+.highlight-card{background:linear-gradient(135deg,rgba(230,57,70,0.08),rgba(67,97,238,0.08));border:1px solid rgba(255,255,255,0.08);border-radius:var(--r);padding:2.5rem;text-align:center}
+.features-list{display:flex;flex-direction:column;gap:0.8rem;margin-top:1rem}
+.features-list li{display:flex;align-items:flex-start;gap:0.8rem;font-size:0.9rem;color:rgba(238,242,255,0.8)}
+.features-list li i{color:var(--green);margin-top:3px;flex-shrink:0}
+.tech-category{margin-bottom:2rem}
+.tech-category h4{font-size:0.85rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-muted);margin-bottom:0.8rem}
+.overview-strip{background:linear-gradient(90deg,rgba(230,57,70,0.08),rgba(114,9,183,0.08),rgba(67,97,238,0.08));border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:1.2rem 0;overflow:hidden}
+.strip-inner{display:flex;gap:4rem;white-space:nowrap;animation:scrollStrip 25s linear infinite}
+@keyframes scrollStrip{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.strip-item{display:flex;align-items:center;gap:0.6rem;font-size:0.82rem;font-weight:600;color:rgba(238,242,255,0.6);text-transform:uppercase;letter-spacing:0.06em}
+.strip-item i{color:var(--red)}
+</style>
+</head>
+<body>
+
+<!-- ═══ NAVBAR ═══ -->
+<nav class="navbar" id="navbar">
+  <div class="navbar-inner">
+    <a href="index.html" class="nav-brand">
+      <span class="heart">❤</span> CardioSense
+      <span class="nav-badge">25-26J-337</span>
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html" class="active">Home</a>
+      <a href="domain.html">Domain</a>
+      <div class="nav-dropdown">
+        <button class="nav-drop-btn">Milestones <span class="arrow">▾</span></button>
+        <div class="dropdown-menu">
+          <a href="milestones.html#proposal">Project Proposal <span class="drop-meta">Aug 2025</span></a>
+          <div class="dropdown-divider"></div>
+          <a href="milestones.html#pp1">Progress Presentation I <span class="drop-meta">Nov 2025</span></a>
+          <div class="dropdown-divider"></div>
+          <a href="milestones.html#pp2">Progress Presentation II <span class="drop-meta">Mar 2026</span></a>
+          <div class="dropdown-divider"></div>
+          <a href="milestones.html#final">Final Assessment <span class="drop-meta">May 2026</span></a>
+        </div>
+      </div>
+      <a href="documents.html">Documents</a>
+      <a href="presentations.html">Presentations</a>
+      <a href="about.html">About Us</a>
+      <a href="contact.html" class="nav-cta">Contact</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero-section">
+  <div class="hero-bg"></div>
+  <canvas id="particleCanvas"></canvas>
+  <canvas id="ecgCanvas"></canvas>
+  <div class="hero-content" style="padding-top:var(--nav-h)">
+    <div class="hero-pill" style="display:inline-flex;margin:0 auto 1.8rem">
+      <i class="fa fa-flask"></i> SLIIT Research Project 2025–2026
+    </div>
+    <h1 class="display-1" style="color:#fff;margin-bottom:1.2rem">
+      <span style="display:block;font-size:0.4em;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-muted);font-family:'Inter',sans-serif;font-weight:600;margin-bottom:0.5rem">Cardiovascular Health Intelligence</span>
+      CardioSense
+    </h1>
+    <p class="hero-desc">
+      An AI-powered multi-component research system delivering intelligent
+      <strong style="color:#fff"><span id="typingText">Cardiovascular Risk Prediction</span><span class="cursor"></span></strong>
+    </p>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-bottom:3rem">
+      <a href="domain.html" class="btn btn-primary"><i class="fa fa-microscope"></i> Explore Research</a>
+      <a href="about.html" class="btn btn-outline"><i class="fa fa-users"></i> Meet the Team</a>
+    </div>
+    <div style="display:flex;justify-content:center;gap:3rem;flex-wrap:wrap;padding-top:2rem;border-top:1px solid rgba(255,255,255,0.08)">
+      <div style="text-align:center">
+        <div style="font-size:2.2rem;font-weight:900;font-family:'Rajdhani',sans-serif;color:#fff">
+          <span data-target="70000" data-suffix="+">0+</span>
+        </div>
+        <div style="font-size:0.75rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.08em">Training Records</div>
+      </div>
+      <div style="text-align:center">
+        <div style="font-size:2.2rem;font-weight:900;font-family:'Rajdhani',sans-serif;color:#fff">
+          <span data-target="85" data-suffix="%+">0%+</span>
+        </div>
+        <div style="font-size:0.75rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.08em">Target Accuracy</div>
+      </div>
+      <div style="text-align:center">
+        <div style="font-size:2.2rem;font-weight:900;font-family:'Rajdhani',sans-serif;color:#fff">
+          <span data-target="4" data-suffix="">0</span>
+        </div>
+        <div style="font-size:0.75rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.08em">AI Components</div>
+      </div>
+      <div style="text-align:center">
+        <div style="font-size:2.2rem;font-weight:900;font-family:'Rajdhani',sans-serif;color:#fff">
+          <span data-target="3" data-suffix="s&lt;">0s&lt;</span>
+        </div>
+        <div style="font-size:0.75rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.08em">Prediction Latency</div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-indicator">
+    <span>Scroll</span>
+    <span class="arrow">↓</span>
+  </div>
+</section>
+
+<!-- ═══ TICKER STRIP ═══ -->
+<div class="overview-strip">
+  <div class="strip-inner">
+    <span class="strip-item"><i class="fa fa-heart-pulse"></i> CVD Risk Prediction</span>
+    <span class="strip-item"><i class="fa fa-x-ray"></i> CXR Image Analysis</span>
+    <span class="strip-item"><i class="fa fa-lightbulb"></i> Personalized Recommendations</span>
+    <span class="strip-item"><i class="fa fa-brain"></i> Mental Health Monitoring</span>
+    <span class="strip-item"><i class="fa fa-shield-halved"></i> HIPAA / GDPR Compliant</span>
+    <span class="strip-item"><i class="fa fa-chart-bar"></i> Explainable AI (SHAP/LIME)</span>
+    <span class="strip-item"><i class="fa fa-fire"></i> Grad-CAM Heatmaps</span>
+    <span class="strip-item"><i class="fa fa-robot"></i> NLP Symptom Analysis</span>
+    <!-- duplicate for seamless loop -->
+    <span class="strip-item"><i class="fa fa-heart-pulse"></i> CVD Risk Prediction</span>
+    <span class="strip-item"><i class="fa fa-x-ray"></i> CXR Image Analysis</span>
+    <span class="strip-item"><i class="fa fa-lightbulb"></i> Personalized Recommendations</span>
+    <span class="strip-item"><i class="fa fa-brain"></i> Mental Health Monitoring</span>
+    <span class="strip-item"><i class="fa fa-shield-halved"></i> HIPAA / GDPR Compliant</span>
+    <span class="strip-item"><i class="fa fa-chart-bar"></i> Explainable AI (SHAP/LIME)</span>
+    <span class="strip-item"><i class="fa fa-fire"></i> Grad-CAM Heatmaps</span>
+    <span class="strip-item"><i class="fa fa-robot"></i> NLP Symptom Analysis</span>
+  </div>
+</div>
+
+<!-- ═══ ABOUT PROJECT ═══ -->
+<section class="section" id="about">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center">
+      <div class="reveal-left">
+        <div class="section-label">About the Research</div>
+        <h2 style="margin-bottom:1.2rem;color:#fff">Addressing the Global <span class="gradient-text">CVD Crisis</span></h2>
+        <p style="font-size:1rem;line-height:1.9;margin-bottom:1.2rem">
+          Cardiovascular diseases (CVDs) remain the world's leading cause of death, claiming
+          <strong style="color:#fff">17.9 million lives annually</strong> — 32% of all global deaths (WHO, 2023).
+          Early detection and personalised intervention are critical yet remain inaccessible in
+          low-resource healthcare environments.
+        </p>
+        <p style="font-size:1rem;line-height:1.9;margin-bottom:1.5rem">
+          CardioSense is a comprehensive AI-powered platform that integrates four intelligent
+          components to deliver end-to-end cardiovascular health monitoring — from symptom
+          analysis to personalised lifestyle recommendations.
+        </p>
+        <ul class="features-list">
+          <li><i class="fa fa-check-circle"></i> Logistic Regression + TF-IDF risk pipeline — 97.5% accuracy</li>
+          <li><i class="fa fa-check-circle"></i> Fine-tuned DenseNet-121 CXR analysis — 14-label Grad-CAM XAI</li>
+          <li><i class="fa fa-check-circle"></i> XGBoost + Bootstrap ensemble — 15 personalised recommendations</li>
+          <li><i class="fa fa-check-circle"></i> QLoRA fine-tuned TinyLlama-1.1B mental health chatbot</li>
+          <li><i class="fa fa-check-circle"></i> Firebase-backed multi-user platform with PDF reporting</li>
+        </ul>
+      </div>
+      <div class="reveal-right">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+          <div class="highlight-card">
+            <i class="fa fa-heart-pulse" style="font-size:2rem;color:var(--red);margin-bottom:0.8rem;display:block"></i>
+            <h4 style="font-size:1rem;margin-bottom:0.4rem;color:#fff">Risk Prediction</h4>
+            <p style="font-size:0.85rem;margin:0">Structured clinical data + free-text symptoms → CVD risk score</p>
+          </div>
+          <div class="highlight-card" style="background:linear-gradient(135deg,rgba(0,180,216,0.08),rgba(0,180,216,0.03))">
+            <i class="fa fa-x-ray" style="font-size:2rem;color:var(--cyan);margin-bottom:0.8rem;display:block"></i>
+            <h4 style="font-size:1rem;margin-bottom:0.4rem;color:#fff">CXR Analysis</h4>
+            <p style="font-size:0.85rem;margin:0">DenseNet-121 + Grad-CAM heatmaps for 14 pathologies</p>
+          </div>
+          <div class="highlight-card" style="background:linear-gradient(135deg,rgba(6,214,160,0.08),rgba(6,214,160,0.03))">
+            <i class="fa fa-apple-whole" style="font-size:2rem;color:var(--green);margin-bottom:0.8rem;display:block"></i>
+            <h4 style="font-size:1rem;margin-bottom:0.4rem;color:#fff">Recommendations</h4>
+            <p style="font-size:0.85rem;margin:0">Personalised diet, sleep & lifestyle plans with confidence scores</p>
+          </div>
+          <div class="highlight-card" style="background:linear-gradient(135deg,rgba(67,97,238,0.08),rgba(67,97,238,0.03))">
+            <i class="fa fa-comments" style="font-size:2rem;color:var(--blue);margin-bottom:0.8rem;display:block"></i>
+            <h4 style="font-size:1rem;margin-bottom:0.4rem;color:#fff">Mental Health</h4>
+            <p style="font-size:0.85rem;margin:0">NLP-powered chatbot with PHQ-9/GAD-7 aligned assessment</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ RESEARCH COMPONENTS ═══ -->
+<section class="section" style="background:rgba(255,255,255,0.015);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-label" style="justify-content:center">Research Components</div>
+      <h2 style="color:#fff">Four Pillars of Cardiovascular Intelligence</h2>
+      <p>Each component addresses a distinct research gap in cardiovascular healthcare through advanced AI and machine learning</p>
+    </div>
+    <div class="grid-2" style="gap:1.5rem">
+
+      <div class="component-card comp-1 reveal delay-1">
+        <div class="component-num">01</div>
+        <div class="component-icon"><i class="fa fa-heart-pulse"></i></div>
+        <span class="badge badge-red" style="margin-bottom:1rem">IT22126856</span>
+        <h3 style="color:#fff;margin-bottom:0.8rem">Symptom Analysis &amp; CVD Risk Prediction</h3>
+        <p>Hybrid NLP-ML pipeline combining TF-IDF symptom vectorisation with 13 structured clinical features (BP, cholesterol, BMI, lifestyle) via Logistic Regression. Achieves <strong style="color:var(--red)">97.5% accuracy</strong> and <strong style="color:var(--red)">98.34% ROC-AUC</strong> with SHAP interpretability for each prediction.</p>
+        <div class="component-tags">
+          <span class="badge badge-red">Logistic Regression</span>
+          <span class="badge badge-red">TF-IDF</span>
+          <span class="badge badge-red">SHAP</span>
+          <span class="badge badge-red">Scikit-learn</span>
+        </div>
+        <div style="margin-top:1.2rem;font-size:0.85rem;color:var(--text-muted)"><i class="fa fa-user"></i> Malalagama D.D. &nbsp;|&nbsp; <i class="fa fa-database"></i> CVD Risk Dataset — 13 clinical features</div>
+      </div>
+
+      <div class="component-card comp-2 reveal delay-2">
+        <div class="component-num">02</div>
+        <div class="component-icon"><i class="fa fa-x-ray"></i></div>
+        <span class="badge badge-cyan" style="margin-bottom:1rem">IT22296146</span>
+        <h3 style="color:#fff;margin-bottom:0.8rem">Chest X-Ray Cardiac Analysis</h3>
+        <p>Fine-tuned <strong style="color:var(--cyan)">DenseNet-121</strong> (PyTorch) for 14-label multi-class chest pathology classification including cardiomegaly, pleural effusion, and atelectasis. Integrates Grad-CAM heatmaps for clinical visual explainability with class-balanced training on the CheXpert dataset.</p>
+        <div class="component-tags">
+          <span class="badge badge-cyan">DenseNet-121</span>
+          <span class="badge badge-cyan">Grad-CAM</span>
+          <span class="badge badge-cyan">PyTorch</span>
+          <span class="badge badge-cyan">14 Pathologies</span>
+        </div>
+        <div style="margin-top:1.2rem;font-size:0.85rem;color:var(--text-muted)"><i class="fa fa-user"></i> Athukorala A.A.S.M. &nbsp;|&nbsp; <i class="fa fa-image"></i> CheXpert Dataset (14-label multi-label)</div>
+      </div>
+
+      <div class="component-card comp-3 reveal delay-3">
+        <div class="component-num">03</div>
+        <div class="component-icon"><i class="fa fa-leaf"></i></div>
+        <span class="badge badge-green" style="margin-bottom:1rem">IT22638854</span>
+        <h3 style="color:#fff;margin-bottom:0.8rem">Personalised Cardiovascular Health Recommendations</h3>
+        <p>Calibrated <strong style="color:var(--green)">XGBoost</strong> risk model (ROC-AUC: 0.7999) combined with a OneVsRest LogReg recommender (mean ROC-AUC: 0.9951) on 68,583 records. Bootstrap ensemble (7 models) generates 15 ranked lifestyle recommendations with counterfactual risk-reduction scoring.</p>
+        <div class="component-tags">
+          <span class="badge badge-green">XGBoost</span>
+          <span class="badge badge-green">Bootstrap Ensemble</span>
+          <span class="badge badge-green">15 Recommendations</span>
+          <span class="badge badge-green">Counterfactual AI</span>
+        </div>
+        <div style="margin-top:1.2rem;font-size:0.85rem;color:var(--text-muted)"><i class="fa fa-user"></i> Randini H.M.R. &nbsp;|&nbsp; <i class="fa fa-database"></i> Kaggle CVD Dataset — 68,583 records</div>
+      </div>
+
+      <div class="component-card comp-4 reveal delay-4">
+        <div class="component-num">04</div>
+        <div class="component-icon"><i class="fa fa-brain"></i></div>
+        <span class="badge badge-blue" style="margin-bottom:1rem">IT22230706</span>
+        <h3 style="color:#fff;margin-bottom:0.8rem">AI Mental Health Monitoring Chatbot</h3>
+        <p>Custom-trained <strong style="color:var(--blue)">TinyLlama-1.1B</strong> fine-tuned via QLoRA (4-bit, rank=16) on 38,249 mental health conversations. The trained model delivers empathetic cardiac patient support, administers PHQ-9/GAD-7 assessments, and generates risk-tiered clinical alerts.</p>
+        <div class="component-tags">
+          <span class="badge badge-blue">TinyLlama-1.1B</span>
+          <span class="badge badge-blue">QLoRA Fine-tuned</span>
+          <span class="badge badge-blue">PHQ-9 / GAD-7</span>
+          <span class="badge badge-blue">38K Training Samples</span>
+        </div>
+        <div style="margin-top:1.2rem;font-size:0.85rem;color:var(--text-muted)"><i class="fa fa-user"></i> Kuruneru S.G. &nbsp;|&nbsp; <i class="fa fa-comments"></i> MentalChat16K + Empathetic Dialogues + MedQuAD</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ KEY STATISTICS ═══ -->
+<section class="section">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-label" style="justify-content:center">By the Numbers</div>
+      <h2 style="color:#fff">Research at Scale</h2>
+    </div>
+    <div class="grid-4 reveal">
+      <div class="stat-card">
+        <div class="stat-value gradient-text"><span data-target="68583" data-suffix="+">0</span></div>
+        <div class="stat-label">CVD Training Records (C3)</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value gradient-text-cool"><span data-target="97" data-suffix=".5%">0</span></div>
+        <div class="stat-label">C1 Risk Model Accuracy</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value gradient-text-warm"><span data-target="14">0</span></div>
+        <div class="stat-label">CXR Pathology Labels (C2)</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value gradient-text"><span data-target="38249" data-suffix="+">0</span></div>
+        <div class="stat-label">Chatbot Training Samples (C4)</div>
+      </div>
+    </div>
+    <div class="grid-4 reveal" style="margin-top:1.5rem">
+      <div class="stat-card">
+        <div class="stat-value" style="background:linear-gradient(135deg,var(--green),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text"><span data-target="4">0</span></div>
+        <div class="stat-label">AI Components</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value gradient-text-warm"><span data-target="15">0</span></div>
+        <div class="stat-label">Recommendation Labels (C3)</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value gradient-text"><span data-target="98" data-suffix=".34%">0</span></div>
+        <div class="stat-label">C1 ROC-AUC</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value gradient-text-cool"><span data-target="1" data-suffix=".1B">0</span></div>
+        <div class="stat-label">Chatbot Model Parameters (C4)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TECHNOLOGY STACK ═══ -->
+<section class="section" style="background:rgba(255,255,255,0.015);border-top:1px solid var(--border)">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-label" style="justify-content:center">Technology Stack</div>
+      <h2 style="color:#fff">Built with Cutting-Edge Tools</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem">
+      <div class="card reveal delay-1">
+        <div class="card-icon" style="background:rgba(230,57,70,0.1);color:var(--red)"><i class="fa fa-brain"></i></div>
+        <h4 style="color:#fff;margin-bottom:0.8rem">AI / ML Frameworks</h4>
+        <div class="tech-tags">
+          <span class="tech-tag">PyTorch</span><span class="tech-tag">scikit-learn</span>
+          <span class="tech-tag">XGBoost</span><span class="tech-tag">joblib</span>
+          <span class="tech-tag">torchvision</span>
+        </div>
+      </div>
+      <div class="card reveal delay-2">
+        <div class="card-icon" style="background:rgba(0,180,216,0.1);color:var(--cyan)"><i class="fa fa-language"></i></div>
+        <h4 style="color:#fff;margin-bottom:0.8rem">NLP & Language Models</h4>
+        <div class="tech-tags">
+          <span class="tech-tag">TinyLlama-1.1B</span><span class="tech-tag">QLoRA</span>
+          <span class="tech-tag">TF-IDF</span><span class="tech-tag">HuggingFace PEFT</span>
+          <span class="tech-tag">Transformers</span>
+        </div>
+      </div>
+      <div class="card reveal delay-3">
+        <div class="card-icon" style="background:rgba(6,214,160,0.1);color:var(--green)"><i class="fa fa-eye"></i></div>
+        <h4 style="color:#fff;margin-bottom:0.8rem">Computer Vision & XAI</h4>
+        <div class="tech-tags">
+          <span class="tech-tag">DenseNet-121</span><span class="tech-tag">Grad-CAM</span>
+          <span class="tech-tag">SHAP</span><span class="tech-tag">pytorch-grad-cam</span>
+          <span class="tech-tag">opencv-python</span>
+        </div>
+      </div>
+      <div class="card reveal delay-4">
+        <div class="card-icon" style="background:rgba(67,97,238,0.1);color:var(--blue)"><i class="fa fa-server"></i></div>
+        <h4 style="color:#fff;margin-bottom:0.8rem">Backend & Database</h4>
+        <div class="tech-tags">
+          <span class="tech-tag">Flask</span><span class="tech-tag">Python 3.10</span>
+          <span class="tech-tag">Firebase Firestore</span>
+          <span class="tech-tag">Firebase Storage</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TEAM PREVIEW ═══ -->
+<section class="section">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-label" style="justify-content:center">Research Team</div>
+      <h2 style="color:#fff">The Minds Behind CardioSense</h2>
+      <p>A dedicated team of undergraduate researchers from Sri Lanka Institute of Information Technology (SLIIT)</p>
+    </div>
+    <div class="grid-4 reveal">
+      <div style="text-align:center;padding:1.5rem;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r);transition:var(--transition)" onmouseover="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(230,57,70,0.35)'" onmouseout="this.style.transform='';this.style.borderColor=''">
+        <div style="width:90px;height:90px;border-radius:50%;margin:0 auto 1rem;overflow:hidden;border:3px solid rgba(230,57,70,0.5);box-shadow:0 0 20px rgba(230,57,70,0.25),0 4px 16px rgba(0,0,0,0.4);flex-shrink:0">
+          <img src="Profile/Daniru Malalagama.jpeg" alt="Daniru Malalagama" style="width:100%;height:100%;object-fit:cover;object-position:top center;display:block" onerror="this.parentElement.innerHTML='<div style=\'width:100%;height:100%;background:var(--grad-warm);display:flex;align-items:center;justify-content:center;font-size:1.5rem;font-weight:800;font-family:Rajdhani,sans-serif;color:#fff\'>DD</div>'">
+        </div>
+        <h4 style="font-size:1rem;color:#fff;margin-bottom:0.2rem">Malalagama D.D.</h4>
+        <p style="font-size:0.78rem;color:var(--red);margin-bottom:0.3rem;font-weight:600">Risk Prediction</p>
+        <p style="font-size:0.75rem;font-family:'Fira Code',monospace;color:var(--text-muted);margin:0">IT22126856</p>
+      </div>
+      <div style="text-align:center;padding:1.5rem;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r);transition:var(--transition)" onmouseover="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(0,180,216,0.35)'" onmouseout="this.style.transform='';this.style.borderColor=''">
+        <div style="width:90px;height:90px;border-radius:50%;margin:0 auto 1rem;overflow:hidden;border:3px solid rgba(0,180,216,0.5);box-shadow:0 0 20px rgba(0,180,216,0.25),0 4px 16px rgba(0,0,0,0.4)">
+          <img src="Profile/Sahan Athukorala.jpeg" alt="Sahan Athukorala" style="width:100%;height:100%;object-fit:cover;object-position:top center;display:block" onerror="this.parentElement.innerHTML='<div style=\'width:100%;height:100%;background:var(--grad-cool);display:flex;align-items:center;justify-content:center;font-size:1.5rem;font-weight:800;font-family:Rajdhani,sans-serif;color:#fff\'>AA</div>'">
+        </div>
+        <h4 style="font-size:1rem;color:#fff;margin-bottom:0.2rem">Athukorala A.A.S.M.</h4>
+        <p style="font-size:0.78rem;color:var(--cyan);margin-bottom:0.3rem;font-weight:600">CXR Analysis</p>
+        <p style="font-size:0.75rem;font-family:'Fira Code',monospace;color:var(--text-muted);margin:0">IT22296146</p>
+      </div>
+      <div style="text-align:center;padding:1.5rem;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r);transition:var(--transition)" onmouseover="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(6,214,160,0.35)'" onmouseout="this.style.transform='';this.style.borderColor=''">
+        <div style="width:90px;height:90px;border-radius:50%;margin:0 auto 1rem;overflow:hidden;border:3px solid rgba(6,214,160,0.5);box-shadow:0 0 20px rgba(6,214,160,0.25),0 4px 16px rgba(0,0,0,0.4)">
+          <img src="Profile/Radeesa Randini.jpeg" alt="Radeesa Randini" style="width:100%;height:100%;object-fit:cover;object-position:top center;display:block" onerror="this.parentElement.innerHTML='<div style=\'width:100%;height:100%;background:var(--grad-green);display:flex;align-items:center;justify-content:center;font-size:1.5rem;font-weight:800;font-family:Rajdhani,sans-serif;color:#fff\'>RH</div>'">
+        </div>
+        <h4 style="font-size:1rem;color:#fff;margin-bottom:0.2rem">Randini H.M.R.</h4>
+        <p style="font-size:0.78rem;color:var(--green);margin-bottom:0.3rem;font-weight:600">Recommendations</p>
+        <p style="font-size:0.75rem;font-family:'Fira Code',monospace;color:var(--text-muted);margin:0">IT22638854</p>
+      </div>
+      <div style="text-align:center;padding:1.5rem;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r);transition:var(--transition)" onmouseover="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(67,97,238,0.35)'" onmouseout="this.style.transform='';this.style.borderColor=''">
+        <div style="width:90px;height:90px;border-radius:50%;margin:0 auto 1rem;overflow:hidden;border:3px solid rgba(67,97,238,0.5);box-shadow:0 0 20px rgba(67,97,238,0.25),0 4px 16px rgba(0,0,0,0.4)">
+          <img src="Profile/Shehan Kuruneru.jpeg" alt="Shehan Kuruneru" style="width:100%;height:100%;object-fit:cover;object-position:top center;display:block" onerror="this.parentElement.innerHTML='<div style=\'width:100%;height:100%;background:linear-gradient(135deg,var(--blue),var(--purple));display:flex;align-items:center;justify-content:center;font-size:1.5rem;font-weight:800;font-family:Rajdhani,sans-serif;color:#fff\'>KS</div>'">
+        </div>
+        <h4 style="font-size:1rem;color:#fff;margin-bottom:0.2rem">Kuruneru S.G.</h4>
+        <p style="font-size:0.78rem;color:var(--blue);margin-bottom:0.3rem;font-weight:600">Mental Health AI</p>
+        <p style="font-size:0.75rem;font-family:'Fira Code',monospace;color:var(--text-muted);margin:0">IT22230706</p>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:2.5rem">
+      <a href="about.html" class="btn btn-outline"><i class="fa fa-arrow-right"></i> View Full Profiles</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-brand" style="margin-bottom:1rem;display:inline-flex">
+          <span class="heart">❤</span> CardioSense
+          <span class="nav-badge">25-26J-337</span>
+        </a>
+        <p>An AI-powered cardiovascular health monitoring system developed as a research project at Sri Lanka Institute of Information Technology (SLIIT).</p>
+        <p style="font-size:0.8rem;color:rgba(136,146,176,0.5);margin-top:0.8rem">Supervisor: Mrs. Manori Gamage | SLIIT, Sri Lanka</p>
+      </div>
+      <div class="footer-col">
+        <h5>Navigation</h5>
+        <div class="footer-links">
+          <a href="index.html"><i class="fa fa-home fa-fw"></i> Home</a>
+          <a href="domain.html"><i class="fa fa-flask fa-fw"></i> Domain</a>
+          <a href="milestones.html"><i class="fa fa-flag fa-fw"></i> Milestones</a>
+          <a href="documents.html"><i class="fa fa-file fa-fw"></i> Documents</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Research</h5>
+        <div class="footer-links">
+          <a href="domain.html#objectives"><i class="fa fa-bullseye fa-fw"></i> Objectives</a>
+          <a href="domain.html#methodology"><i class="fa fa-diagram-project fa-fw"></i> Methodology</a>
+          <a href="presentations.html"><i class="fa fa-presentation-screen fa-fw"></i> Presentations</a>
+          <a href="about.html"><i class="fa fa-users fa-fw"></i> About Us</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Contact</h5>
+        <div class="footer-links">
+          <a href="contact.html"><i class="fa fa-envelope fa-fw"></i> Get in Touch</a>
+          <a href="mailto:it22126856@my.sliit.lk"><i class="fa fa-at fa-fw"></i> Team Email</a>
+          <a href="https://www.sliit.lk" target="_blank" rel="noopener"><i class="fa fa-globe fa-fw"></i> SLIIT Website</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="year"></span> CardioSense Research Team — SLIIT. All rights reserved.</span>
+      <span>Built for <a href="https://www.sliit.lk">SLIIT</a> CDAP Research 2025–2026</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

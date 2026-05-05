@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Domain | CardioSense Research</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Rajdhani:wght@500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="css/style.css">
+<style>
+.tab-nav{display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:2rem;border-bottom:1px solid var(--border);padding-bottom:1rem}
+.tab-btn{padding:0.5rem 1.2rem;border-radius:30px;font-size:0.85rem;font-weight:600;cursor:pointer;border:1px solid var(--border);background:transparent;color:var(--text-muted);transition:var(--transition);font-family:'Inter',sans-serif}
+.tab-btn.active,.tab-btn:hover{background:var(--red);border-color:var(--red);color:#fff}
+.phase-flow{display:flex;gap:0;overflow-x:auto;padding-bottom:0.5rem}
+.phase-item{flex:1;min-width:160px;text-align:center;padding:1.5rem 1rem;position:relative;background:var(--bg-card);border-top:3px solid}
+.phase-item:nth-child(1){border-color:var(--red)}
+.phase-item:nth-child(2){border-color:var(--purple)}
+.phase-item:nth-child(3){border-color:var(--blue)}
+.phase-item:nth-child(4){border-color:var(--cyan)}
+.phase-item:nth-child(5){border-color:var(--green)}
+.phase-item:not(:last-child)::after{content:'→';position:absolute;right:-12px;top:50%;transform:translateY(-50%);color:var(--text-muted);font-size:1.2rem;z-index:2;background:var(--bg-primary);padding:0 4px}
+.phase-num{font-size:1.8rem;font-weight:900;font-family:'Rajdhani',sans-serif;display:block}
+.phase-name{font-size:0.82rem;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;color:rgba(238,242,255,0.7)}
+.phase-items{font-size:0.75rem;color:var(--text-muted);margin-top:0.5rem;line-height:1.6}
+.ref-card{padding:1.2rem;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-sm);transition:var(--transition)}
+.ref-card:hover{background:var(--bg-card-hover)}
+.component-section{border-left:3px solid;padding:2rem;background:var(--bg-card);border-radius:0 var(--r) var(--r) 0;margin-bottom:1.5rem}
+.cs1{border-color:var(--red)}
+.cs2{border-color:var(--cyan)}
+.cs3{border-color:var(--green)}
+.cs4{border-color:var(--blue)}
+</style>
+</head>
+<body>
+<nav class="navbar">
+  <div class="navbar-inner">
+    <a href="index.html" class="nav-brand"><span class="heart">❤</span> CardioSense <span class="nav-badge">25-26J-337</span></a>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="domain.html" class="active">Domain</a>
+      <div class="nav-dropdown">
+        <button class="nav-drop-btn">Milestones <span class="arrow">▾</span></button>
+        <div class="dropdown-menu">
+          <a href="milestones.html#proposal">Project Proposal <span class="drop-meta">Aug 2025</span></a>
+          <div class="dropdown-divider"></div>
+          <a href="milestones.html#pp1">Progress Presentation I <span class="drop-meta">Nov 2025</span></a>
+          <div class="dropdown-divider"></div>
+          <a href="milestones.html#pp2">Progress Presentation II <span class="drop-meta">Mar 2026</span></a>
+          <div class="dropdown-divider"></div>
+          <a href="milestones.html#final">Final Assessment <span class="drop-meta">May 2026</span></a>
+        </div>
+      </div>
+      <a href="documents.html">Documents</a>
+      <a href="presentations.html">Presentations</a>
+      <a href="about.html">About Us</a>
+      <a href="contact.html" class="nav-cta">Contact</a>
+    </div>
+    <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="page-content">
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="container">
+    <div class="section-label" style="justify-content:center">Research Domain</div>
+    <h1 class="display-2" style="color:#fff">Literature, Gaps &amp; Methodology</h1>
+    <p>A comprehensive overview of the research domain, identified gaps, problem statements, objectives and methodology driving the CardioSense system.</p>
+  </div>
+</div>
+
+<!-- ═══ LITERATURE SURVEY ═══ -->
+<section class="section" id="literature">
+  <div class="container">
+    <div class="section-label">Literature Survey</div>
+    <h2 style="color:#fff;margin-bottom:0.8rem">Prior Work &amp; Foundations</h2>
+    <p style="margin-bottom:2.5rem">Key studies and datasets that underpin the CardioSense research components</p>
+
+    <div style="overflow-x:auto;border-radius:var(--r);border:1px solid var(--border)">
+      <table class="lit-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Study / Dataset</th>
+            <th>Relevance</th>
+            <th>Component</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td><strong>Framingham Heart Study</strong></td><td>Long-term CVD risk prediction model; gold standard for risk scoring</td><td><span class="badge badge-red">C1, C3</span></td></tr>
+          <tr><td>2</td><td><strong>UCI Heart Disease Dataset</strong></td><td>Structured clinical features for ML-based risk classification</td><td><span class="badge badge-red">C1</span></td></tr>
+          <tr><td>3</td><td><strong>NIH ChestX-ray14</strong></td><td>112,000+ labelled chest X-rays covering 14 thoracic pathologies</td><td><span class="badge badge-cyan">C2</span></td></tr>
+          <tr><td>4</td><td><strong>CheXpert (Stanford)</strong></td><td>224,316 chest X-rays with uncertainty labels for multi-label classification</td><td><span class="badge badge-cyan">C2</span></td></tr>
+          <tr><td>5</td><td><strong>MIMIC-CXR / MIMIC-III/IV</strong></td><td>De-identified clinical records with CXR images and free-text reports</td><td><span class="badge badge-cyan">C2</span> <span class="badge badge-blue">C4</span></td></tr>
+          <tr><td>6</td><td><strong>CheXNet (Rajpurkar et al., 2017)</strong></td><td>DenseNet-121 at radiologist-level pneumonia detection; baseline for C2</td><td><span class="badge badge-cyan">C2</span></td></tr>
+          <tr><td>7</td><td><strong>TinyLlama-1.1B (QLoRA Fine-tuned)</strong></td><td>1.1B-parameter LLM fine-tuned with QLoRA on 38K mental health conversations for cardiac patient support</td><td><span class="badge badge-blue">C4</span></td></tr>
+          <tr><td>8</td><td><strong>PHQ-9 / GAD-7 Instruments</strong></td><td>Validated clinical tools for depression and anxiety screening</td><td><span class="badge badge-blue">C4</span></td></tr>
+          <tr><td>9</td><td><strong>AHA / WHO CVD Guidelines</strong></td><td>Evidence-based global guidelines for lifestyle recommendations</td><td><span class="badge badge-green">C3</span></td></tr>
+          <tr><td>10</td><td><strong>DenseNet-121 (Huang et al., 2017)</strong></td><td>Densely connected CNN fine-tuned for 14-label chest X-ray pathology detection with Grad-CAM explainability</td><td><span class="badge badge-cyan">C2</span></td></tr>
+          <tr><td>11</td><td><strong>Grad-CAM (Selvaraju et al., 2017)</strong></td><td>Gradient-based visual explanations for CNN predictions</td><td><span class="badge badge-cyan">C2</span></td></tr>
+          <tr><td>12</td><td><strong>SHAP (Lundberg &amp; Lee, 2017)</strong></td><td>SHapley Additive exPlanations for ML model interpretability</td><td><span class="badge badge-red">C1</span></td></tr>
+          <tr><td>13</td><td><strong>Kaggle CVD Dataset — sulianova/cardiovascular-disease-dataset (68,583 records)</strong></td><td>Balanced 13-feature cardiovascular dataset used for risk model (XGBoost) and recommender training (15 labels)</td><td><span class="badge badge-green">C3</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<div class="divider" style="margin:0"></div>
+
+<!-- ═══ RESEARCH GAP ═══ -->
+<section class="section" id="gap">
+  <div class="container">
+    <div class="section-label">Research Gap</div>
+    <h2 style="color:#fff;margin-bottom:0.8rem">What's Missing in Current Solutions</h2>
+    <p style="margin-bottom:2.5rem">Five critical gaps identified across cardiovascular health AI systems that CardioSense aims to address</p>
+    <div style="display:flex;flex-direction:column;gap:1rem">
+      <div class="gap-card reveal">
+        <div class="gap-num">1</div>
+        <div class="gap-text">
+          <h4 style="color:#fff">Over-reliance on Structured Data</h4>
+          <p>Existing CVD prediction models rely exclusively on structured clinical metrics (BP, cholesterol, age), ignoring the rich diagnostic information embedded in patients' free-text symptom descriptions. No hybrid NLP+ML framework combines both data types effectively.</p>
+        </div>
+      </div>
+      <div class="gap-card reveal delay-1">
+        <div class="gap-num">2</div>
+        <div class="gap-text">
+          <h4 style="color:#fff">CXR Analysis Without Clinical Explainability</h4>
+          <p>Most chest X-ray AI systems use CNNs (DenseNet, ResNet) without visual explainability — clinicians cannot verify why a pathology was flagged. No production system combines multi-label DenseNet-121 classification with Grad-CAM heatmaps for transparent, per-pathology visual explanations.</p>
+        </div>
+      </div>
+      <div class="gap-card reveal delay-2">
+        <div class="gap-num">3</div>
+        <div class="gap-text">
+          <h4 style="color:#fff">Generic, Non-Explainable Recommendations</h4>
+          <p>Digital health tools provide generic lifestyle advice without personalisation to individual risk profiles. No system aligns recommendations with AHA/WHO guidelines while providing transparent IF-THEN reasoning and measurable confidence levels.</p>
+        </div>
+      </div>
+      <div class="gap-card reveal delay-3">
+        <div class="gap-num">4</div>
+        <div class="gap-text">
+          <h4 style="color:#fff">Absence of Continuous Mental Health Monitoring</h4>
+          <p>Mental health assessment for CVD patients occurs only during infrequent clinical visits. No continuous, multi-modal AI system monitors patient-generated text, voice, and behavioral patterns between appointments with real-time explainable risk alerts.</p>
+        </div>
+      </div>
+      <div class="gap-card reveal delay-4">
+        <div class="gap-num">5</div>
+        <div class="gap-text">
+          <h4 style="color:#fff">Fragmented, Siloed Cardiovascular AI Tools</h4>
+          <p>Current cardiovascular AI solutions address individual problems in isolation. There is no unified, end-to-end platform integrating risk prediction, imaging analysis, personalised recommendations, and mental health monitoring into a single clinical-grade system.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider" style="margin:0"></div>
+
+<!-- ═══ RESEARCH PROBLEM ═══ -->
+<section class="section" id="problem">
+  <div class="container">
+    <div class="section-label">Research Problem</div>
+    <h2 style="color:#fff;margin-bottom:2rem">Problem Statements</h2>
+    <div style="display:flex;flex-direction:column;gap:1.2rem">
+      <div class="info-box info-box-red reveal">
+        <div style="display:flex;gap:1rem;align-items:flex-start">
+          <span style="font-size:1.5rem;flex-shrink:0">🔬</span>
+          <div>
+            <h4 style="color:var(--red);margin-bottom:0.5rem">Component 1 — Risk Prediction</h4>
+            <p>How can a hybrid NLP-ML framework effectively integrate free-text symptom descriptions with structured clinical metrics to achieve accurate, interpretable, and low-resource-compatible cardiovascular disease risk prediction?</p>
+          </div>
+        </div>
+      </div>
+      <div class="info-box info-box-blue reveal delay-1" style="border-color:var(--cyan);background:rgba(0,180,216,0.05)">
+        <div style="display:flex;gap:1rem;align-items:flex-start">
+          <span style="font-size:1.5rem;flex-shrink:0">🩻</span>
+          <div>
+            <h4 style="color:var(--cyan);margin-bottom:0.5rem">Component 2 — CXR Analysis</h4>
+            <p>How can a fine-tuned DenseNet-121 model with Grad-CAM visual explainability achieve accurate multi-label cardiac pathology detection from chest X-rays while providing clinically interpretable heatmap overlays for deployment in resource-constrained healthcare settings?</p>
+          </div>
+        </div>
+      </div>
+      <div class="info-box info-box-green reveal delay-2">
+        <div style="display:flex;gap:1rem;align-items:flex-start">
+          <span style="font-size:1.5rem;flex-shrink:0">💡</span>
+          <div>
+            <h4 style="color:var(--green);margin-bottom:0.5rem">Component 3 — Recommendations</h4>
+            <p>How can an AI-powered system translate individual cardiovascular risk scores into customised, evidence-based lifestyle plans while providing transparent, explainable recommendations with measurable confidence levels aligned to global clinical guidelines?</p>
+          </div>
+        </div>
+      </div>
+      <div class="info-box info-box-blue reveal delay-3">
+        <div style="display:flex;gap:1rem;align-items:flex-start">
+          <span style="font-size:1.5rem;flex-shrink:0">🧠</span>
+          <div>
+            <h4 style="color:var(--blue);margin-bottom:0.5rem">Component 4 — Mental Health</h4>
+            <p>How can a domain-adapted large language model (TinyLlama-1.1B fine-tuned via QLoRA on 38K mental health conversations) provide empathetic, clinically structured mental health support for cardiovascular patients — including PHQ-9/GAD-7 assessment and safety-tiered risk alerts?</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider" style="margin:0"></div>
+
+<!-- ═══ OBJECTIVES ═══ -->
+<section class="section" id="objectives">
+  <div class="container">
+    <div class="section-label">Research Objectives</div>
+    <h2 style="color:#fff;margin-bottom:2rem">What We Aim to Achieve</h2>
+
+    <div class="component-section cs1 reveal">
+      <h3 style="color:var(--red);margin-bottom:1rem"><i class="fa fa-heart-pulse"></i> Component 1 — CVD Risk Prediction</h3>
+      <p><strong style="color:#fff">Main Objective:</strong> Develop an AI-powered symptom analysis and CVD risk prediction framework combining structured and unstructured health data for accessible, interpretable risk assessment.</p>
+      <ul class="obj-list" style="margin-top:1rem">
+        <li>Build a hybrid NLP-ML pipeline combining TF-IDF vectorisation of free-text symptom descriptions with 13 structured clinical features (age, BP, cholesterol, BMI, lifestyle)</li>
+        <li>Train a Logistic Regression classifier achieving <strong>97.5% accuracy</strong> and <strong>98.34% ROC-AUC</strong> on the cardiovascular risk dataset</li>
+        <li>Integrate SHAP explainability to provide transparent patient-level risk factor attribution for each prediction</li>
+        <li>Package the pipeline (StandardScaler + TF-IDF + LogReg) as a deployable .pkl model via scikit-learn</li>
+        <li>Develop an early warning alert system for high-risk patients integrated into the web application</li>
+        <li>Ensure prediction latency under 3 seconds for real-time clinical use</li>
+      </ul>
+    </div>
+
+    <div class="component-section cs2 reveal">
+      <h3 style="color:var(--cyan);margin-bottom:1rem"><i class="fa fa-x-ray"></i> Component 2 — Cardiovascular Image Analysis</h3>
+      <p><strong style="color:#fff">Main Objective:</strong> Develop an AI-based system using CNNs and Vision Transformers for real-time, accurate cardiovascular disease detection from chest X-rays with Explainable AI for clinical transparency.</p>
+      <ul class="obj-list" style="margin-top:1rem">
+        <li>Fine-tune DenseNet-121 (PyTorch) for 14-label multi-label chest X-ray pathology classification on the CheXpert dataset</li>
+        <li>Implement class-balanced training to address label imbalance across conditions including cardiomegaly and pleural effusion</li>
+        <li>Integrate Grad-CAM visual explanations to generate heatmap overlays indicating regions driving each prediction</li>
+        <li>Achieve multi-label inference with per-class probability output and top-finding identification</li>
+        <li>Deploy the model as a PyTorch .pth checkpoint loadable via torchvision for production inference</li>
+        <li>Produce PDF reports with annotated X-ray heatmaps and per-pathology confidence scores</li>
+      </ul>
+    </div>
+
+    <div class="component-section cs3 reveal">
+      <h3 style="color:var(--green);margin-bottom:1rem"><i class="fa fa-leaf"></i> Component 3 — Personalised Recommendations</h3>
+      <p><strong style="color:#fff">Main Objective:</strong> Build an AI-powered framework that translates CVD risk scores into personalised lifestyle plans with transparent, clinically validated recommendations and confidence levels.</p>
+      <ul class="obj-list" style="margin-top:1rem">
+        <li>Train a calibrated XGBoost classifier (CalibratedClassifierCV, isotonic) on 68,583 cardiovascular records achieving ROC-AUC 0.7999 and PR-AUC 0.7737</li>
+        <li>Build a OneVsRest Logistic Regression recommender for 15 lifestyle labels (diet, activity, smoking, alcohol, sleep, clinical follow-up) achieving mean ROC-AUC 0.9951</li>
+        <li>Implement a 7-model bootstrap ensemble for recommendation confidence scoring and uncertainty quantification</li>
+        <li>Develop counterfactual risk-reduction ranking — simulating BP/weight/glucose interventions to rank recommendations by expected risk drop</li>
+        <li>Package 4 joblib models (raw XGB, calibrated, recommender base, bootstrap) with meta.json for reproducible deployment</li>
+        <li>Integrate recommendations into the CardioSense web app with per-label confidence scores and intervention explanations</li>
+      </ul>
+    </div>
+
+    <div class="component-section cs4 reveal">
+      <h3 style="color:var(--blue);margin-bottom:1rem"><i class="fa fa-brain"></i> Component 4 — Mental Health Monitoring</h3>
+      <p><strong style="color:#fff">Main Objective:</strong> Create an AI-powered web application assisting doctors in mental health assessments via an interactive chatbot, with real-time explainable mental state evaluation against PHQ-9/GAD-7.</p>
+      <ul class="obj-list" style="margin-top:1rem">
+        <li>Fine-tune TinyLlama-1.1B (LlamaForCausalLM) using QLoRA (nf4 4-bit quantisation, LoRA rank=16, alpha=32) via HuggingFace PEFT</li>
+        <li>Curate a 38,249-sample training corpus from MentalChat16K, Empathetic Dialogues, MedQuAD (cardiac-filtered), and CounselChat datasets</li>
+        <li>Train using supervised fine-tuning (SFT) for 1 epoch (2,391 steps), achieving final training loss of 0.7983</li>
+        <li>Implement PHQ-9 and GAD-7 assessment workflows within the conversation flow for structured mental health screening</li>
+        <li>Build safety routing to detect self-harm and emergency patterns and escalate to clinical alerts</li>
+        <li>Deploy the trained model for inference with Firebase-backed session management per patient</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="divider" style="margin:0"></div>
+
+<!-- ═══ METHODOLOGY ═══ -->
+<section class="section" id="methodology">
+  <div class="container">
+    <div class="section-label">Methodology</div>
+    <h2 style="color:#fff;margin-bottom:0.8rem">Research Approach &amp; Phases</h2>
+    <p style="margin-bottom:2.5rem">The CardioSense methodology follows a structured 5-phase research pipeline applied consistently across all components</p>
+
+    <div class="phase-flow reveal" style="border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin-bottom:3rem">
+      <div class="phase-item">
+        <span class="phase-num" style="color:var(--red)">01</span>
+        <div class="phase-name">Data Collection</div>
+        <div class="phase-items">Kaggle CVD (68K) • CheXpert (14-label) • MentalChat16K • Empathetic Dialogues • MedQuAD • CounselChat</div>
+      </div>
+      <div class="phase-item">
+        <span class="phase-num" style="color:var(--purple)">02</span>
+        <div class="phase-name">Preprocessing</div>
+        <div class="phase-items">Cleaning • Normalisation • Tokenisation • Stopword Removal • Augmentation • De-identification</div>
+      </div>
+      <div class="phase-item">
+        <span class="phase-num" style="color:var(--blue)">03</span>
+        <div class="phase-name">Feature Engineering</div>
+        <div class="phase-items">NLP Embeddings • Image Enhancement • Symptom Mapping • Risk Score Computation • Sentiment Scoring</div>
+      </div>
+      <div class="phase-item">
+        <span class="phase-num" style="color:var(--cyan)">04</span>
+        <div class="phase-name">Model Training</div>
+        <div class="phase-items">LogReg + TF-IDF • DenseNet-121 • XGBoost + Bootstrap • QLoRA Fine-tuning • Cross-Validation • Hyperparameter Tuning</div>
+      </div>
+      <div class="phase-item">
+        <span class="phase-num" style="color:var(--green)">05</span>
+        <div class="phase-name">Evaluation</div>
+        <div class="phase-items">AUROC • F1/Precision/Recall • SHAP/LIME XAI • Clinical Validation • User Testing • Deployment</div>
+      </div>
+    </div>
+
+    <div class="grid-2 reveal" style="gap:2rem">
+      <div>
+        <h3 style="color:#fff;margin-bottom:1.2rem"><i class="fa fa-database" style="color:var(--red)"></i> Datasets</h3>
+        <div style="display:flex;flex-direction:column;gap:0.7rem">
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:0.8rem 1rem;background:var(--bg-card);border-radius:var(--r-sm);border:1px solid var(--border)">
+            <span style="font-size:0.9rem;color:rgba(238,242,255,0.85)">Kaggle CVD Dataset</span>
+            <span class="badge badge-red">70,000 records</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:0.8rem 1rem;background:var(--bg-card);border-radius:var(--r-sm);border:1px solid var(--border)">
+            <span style="font-size:0.9rem;color:rgba(238,242,255,0.85)">NIH ChestX-ray14</span>
+            <span class="badge badge-cyan">112,000 images</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:0.8rem 1rem;background:var(--bg-card);border-radius:var(--r-sm);border:1px solid var(--border)">
+            <span style="font-size:0.9rem;color:rgba(238,242,255,0.85)">CheXpert (Stanford)</span>
+            <span class="badge badge-cyan">224,316 images</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:0.8rem 1rem;background:var(--bg-card);border-radius:var(--r-sm);border:1px solid var(--border)">
+            <span style="font-size:0.9rem;color:rgba(238,242,255,0.85)">MIMIC-CXR / MIMIC-IV</span>
+            <span class="badge badge-blue">EHR + CXR</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:0.8rem 1rem;background:var(--bg-card);border-radius:var(--r-sm);border:1px solid var(--border)">
+            <span style="font-size:0.9rem;color:rgba(238,242,255,0.85)">UCI Heart Disease</span>
+            <span class="badge badge-red">303 records</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:0.8rem 1rem;background:var(--bg-card);border-radius:var(--r-sm);border:1px solid var(--border)">
+            <span style="font-size:0.9rem;color:rgba(238,242,255,0.85)">PHQ-9 / GAD-7 Datasets</span>
+            <span class="badge badge-blue">Mental Health</span>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h3 style="color:#fff;margin-bottom:1.2rem"><i class="fa fa-chart-bar" style="color:var(--blue)"></i> Performance Targets</h3>
+        <div style="display:flex;flex-direction:column;gap:0.7rem">
+          <div style="padding:1rem;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-sm)">
+            <div style="display:flex;justify-content:space-between;margin-bottom:0.5rem"><span style="font-size:0.85rem;color:rgba(238,242,255,0.8)">Prediction Accuracy</span><span style="font-size:0.85rem;color:var(--green);font-weight:700">&ge; 85%</span></div>
+            <div style="height:6px;background:rgba(255,255,255,0.05);border-radius:3px"><div style="height:100%;width:85%;background:linear-gradient(90deg,var(--green),var(--blue));border-radius:3px"></div></div>
+          </div>
+          <div style="padding:1rem;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-sm)">
+            <div style="display:flex;justify-content:space-between;margin-bottom:0.5rem"><span style="font-size:0.85rem;color:rgba(238,242,255,0.8)">Recall / Sensitivity</span><span style="font-size:0.85rem;color:var(--cyan);font-weight:700">&ge; 90%</span></div>
+            <div style="height:6px;background:rgba(255,255,255,0.05);border-radius:3px"><div style="height:100%;width:90%;background:linear-gradient(90deg,var(--cyan),var(--blue));border-radius:3px"></div></div>
+          </div>
+          <div style="padding:1rem;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-sm)">
+            <div style="display:flex;justify-content:space-between;margin-bottom:0.5rem"><span style="font-size:0.85rem;color:rgba(238,242,255,0.8)">CXR AUROC (macro)</span><span style="font-size:0.85rem;color:var(--purple);font-weight:700">&ge; 0.85</span></div>
+            <div style="height:6px;background:rgba(255,255,255,0.05);border-radius:3px"><div style="height:100%;width:85%;background:linear-gradient(90deg,var(--purple),var(--blue));border-radius:3px"></div></div>
+          </div>
+          <div style="padding:1rem;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-sm)">
+            <div style="display:flex;justify-content:space-between;margin-bottom:0.5rem"><span style="font-size:0.85rem;color:rgba(238,242,255,0.8)">System Uptime</span><span style="font-size:0.85rem;color:var(--yellow);font-weight:700">99%</span></div>
+            <div style="height:6px;background:rgba(255,255,255,0.05);border-radius:3px"><div style="height:100%;width:99%;background:linear-gradient(90deg,var(--yellow),var(--green));border-radius:3px"></div></div>
+          </div>
+          <div style="padding:1rem;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-sm)">
+            <div style="display:flex;justify-content:space-between;margin-bottom:0.5rem"><span style="font-size:0.85rem;color:rgba(238,242,255,0.8)">Max Prediction Latency</span><span style="font-size:0.85rem;color:var(--red);font-weight:700">&lt; 3 seconds</span></div>
+            <div style="height:6px;background:rgba(255,255,255,0.05);border-radius:3px"><div style="height:100%;width:70%;background:linear-gradient(90deg,var(--red),var(--yellow));border-radius:3px"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider" style="margin:0"></div>
+
+<!-- ═══ TECHNOLOGIES ═══ -->
+<section class="section" id="technologies">
+  <div class="container">
+    <div class="section-label">Technologies Used</div>
+    <h2 style="color:#fff;margin-bottom:0.8rem">Technology Stack</h2>
+    <p style="margin-bottom:2.5rem">State-of-the-art tools and frameworks selected for each research component</p>
+    <div class="grid-3 reveal" style="gap:1.5rem">
+      <div class="card">
+        <div class="card-icon" style="background:rgba(230,57,70,0.1);color:var(--red)"><i class="fa fa-brain"></i></div>
+        <h4 style="color:#fff;margin-bottom:0.8rem">Machine Learning</h4>
+        <div class="tech-tags">
+          <span class="tech-tag">scikit-learn</span><span class="tech-tag">XGBoost</span>
+          <span class="tech-tag">PyTorch</span><span class="tech-tag">joblib</span>
+          <span class="tech-tag">Logistic Regression</span><span class="tech-tag">Bootstrap Ensemble</span>
+          <span class="tech-tag">CalibratedClassifierCV</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-icon" style="background:rgba(0,180,216,0.1);color:var(--cyan)"><i class="fa fa-language"></i></div>
+        <h4 style="color:#fff;margin-bottom:0.8rem">NLP & Language Models</h4>
+        <div class="tech-tags">
+          <span class="tech-tag">TinyLlama-1.1B</span><span class="tech-tag">QLoRA (PEFT)</span>
+          <span class="tech-tag">TF-IDF</span><span class="tech-tag">HuggingFace Transformers</span>
+          <span class="tech-tag">MentalChat16K</span><span class="tech-tag">Empathetic Dialogues</span>
+          <span class="tech-tag">4-bit Quantisation</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-icon" style="background:rgba(114,9,183,0.1);color:#c77dff"><i class="fa fa-eye"></i></div>
+        <h4 style="color:#fff;margin-bottom:0.8rem">Computer Vision</h4>
+        <div class="tech-tags">
+          <span class="tech-tag">DenseNet-121</span><span class="tech-tag">ResNet</span><span class="tech-tag">EfficientNet</span>
+          <span class="tech-tag">Vision Transformer</span><span class="tech-tag">Swin Transformer</span><span class="tech-tag">OpenCV</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-icon" style="background:rgba(6,214,160,0.1);color:var(--green)"><i class="fa fa-chart-bar"></i></div>
+        <h4 style="color:#fff;margin-bottom:0.8rem">Explainable AI</h4>
+        <div class="tech-tags">
+          <span class="tech-tag">SHAP</span><span class="tech-tag">LIME</span><span class="tech-tag">Grad-CAM</span>
+          <span class="tech-tag">Captum</span><span class="tech-tag">Integrated Gradients</span><span class="tech-tag">LRP</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-icon" style="background:rgba(67,97,238,0.1);color:var(--blue)"><i class="fa fa-server"></i></div>
+        <h4 style="color:#fff;margin-bottom:0.8rem">Backend & APIs</h4>
+        <div class="tech-tags">
+          <span class="tech-tag">Python 3.10</span><span class="tech-tag">Flask</span><span class="tech-tag">FastAPI</span>
+          <span class="tech-tag">Firebase Admin SDK</span><span class="tech-tag">Google Cloud</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-icon" style="background:rgba(255,209,102,0.1);color:var(--yellow)"><i class="fa fa-database"></i></div>
+        <h4 style="color:#fff;margin-bottom:0.8rem">Data & Storage</h4>
+        <div class="tech-tags">
+          <span class="tech-tag">Firebase Firestore</span>
+          <span class="tech-tag">Firebase Storage</span><span class="tech-tag">Jupyter</span>
+          <span class="tech-tag">Google Colab Pro</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-bottom" style="padding-top:2rem;border-top:1px solid var(--border)">
+      <a href="index.html" class="nav-brand"><span class="heart">❤</span> CardioSense <span class="nav-badge">25-26J-337</span></a>
+      <span style="font-size:0.82rem;color:var(--text-muted)">© <span id="year"></span> SLIIT Research Project. Supervisor: Mrs. Manori Gamage</span>
+    </div>
+  </div>
+</footer>
+<script src="js/main.js"></script>
+</body>
+</html>

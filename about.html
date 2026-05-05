@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>About Us | CardioSense Research</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Rajdhani:wght@500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="css/style.css">
+<style>
+/* ── Supervisor Card ─────────────────────────────────────── */
+.supervisor-card{
+    background:var(--bg-card);
+    border:1px solid rgba(255,209,102,0.25);
+    border-radius:var(--r);
+    padding:2.5rem;
+    display:flex;
+    align-items:flex-start;
+    gap:2rem;
+    margin-bottom:4rem;
+    position:relative;
+    overflow:hidden;
+    transition:var(--transition);
+}
+.supervisor-card::before{
+    content:'';
+    position:absolute;
+    top:0;left:0;right:0;height:3px;
+    background:linear-gradient(90deg,var(--yellow),var(--red),var(--blue));
+}
+.supervisor-card:hover{
+    border-color:rgba(255,209,102,0.4);
+    box-shadow:0 16px 48px rgba(0,0,0,0.35);
+}
+.supervisor-avatar{
+    width:160px;height:160px;
+    border-radius:50%;
+    flex-shrink:0;
+    object-fit:cover;
+    object-position:top center;
+    border:4px solid rgba(255,209,102,0.5);
+    box-shadow:0 0 40px rgba(255,209,102,0.2),0 8px 24px rgba(0,0,0,0.4);
+}
+.sv-role{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    padding:4px 14px;
+    border-radius:20px;
+    background:rgba(255,209,102,0.1);
+    border:1px solid rgba(255,209,102,0.3);
+    color:var(--yellow);
+    font-size:0.75rem;
+    font-weight:700;
+    letter-spacing:0.06em;
+    margin-bottom:0.7rem;
+}
+.sv-name{font-size:1.5rem;font-weight:800;color:#fff;margin-bottom:0.3rem;font-family:'Rajdhani',sans-serif;letter-spacing:0.02em}
+.sv-dept{font-size:0.9rem;color:rgba(238,242,255,0.7);margin-bottom:1rem}
+.sv-bio{font-size:0.88rem;color:rgba(238,242,255,0.65);line-height:1.7}
+/* ── Team Grid ───────────────────────────────────────────── */
+.team-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:1.5rem;
+}
+@media(max-width:1100px){.team-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:580px){.team-grid{grid-template-columns:1fr}}
+.member-card{
+    background:var(--bg-card);
+    border:1px solid var(--border);
+    border-radius:var(--r);
+    overflow:hidden;
+    transition:var(--transition);
+    position:relative;
+    display:flex;
+    flex-direction:column;
+}
+.member-card:hover{
+    transform:translateY(-8px);
+    border-color:rgba(255,255,255,0.12);
+    box-shadow:0 24px 60px rgba(0,0,0,0.45);
+}
+/* ── Member Photo ── */
+.member-accent-line{height:3px;width:100%;flex-shrink:0}
+.member-photo-wrap{
+    position:relative;
+    width:100%;
+    height:230px;
+    overflow:hidden;
+    flex-shrink:0;
+    background:var(--bg-primary);
+}
+.member-photo{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:top center;
+    display:block;
+    transition:transform 0.45s ease;
+}
+.member-card:hover .member-photo{transform:scale(1.05)}
+.member-photo-fallback{
+    width:100%;
+    height:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:4rem;
+    font-weight:800;
+    color:#fff;
+    font-family:'Rajdhani',sans-serif;
+}
+.member-photo-overlay{
+    position:absolute;
+    bottom:0;left:0;right:0;
+    height:70px;
+    pointer-events:none;
+}
+.member-body{
+    padding:1.1rem 1.1rem 0;
+}
+.member-comp-pill{
+    display:inline-flex;
+    align-items:center;
+    gap:5px;
+    padding:3px 10px;
+    border-radius:14px;
+    font-size:0.7rem;
+    font-weight:700;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    margin-bottom:0.6rem;
+}
+.member-name{font-size:1.15rem;font-weight:700;color:#fff;margin-bottom:0.15rem;font-family:'Rajdhani',sans-serif;letter-spacing:0.02em}
+.member-id{font-size:0.78rem;color:var(--text-muted);margin-bottom:0.7rem;font-family:'Fira Code',monospace}
+.member-focus{
+    font-size:0.88rem;
+    font-weight:600;
+    color:rgba(238,242,255,0.9);
+    margin-bottom:0.6rem;
+}
+.member-tech-list{
+    display:flex;
+    flex-wrap:wrap;
+    gap:0.4rem;
+    margin-bottom:1rem;
+}
+.member-tech{
+    display:inline-flex;
+    align-items:center;
+    gap:4px;
+    padding:2px 7px;
+    border-radius:10px;
+    font-size:0.67rem;
+    background:rgba(255,255,255,0.04);
+    border:1px solid rgba(255,255,255,0.07);
+    color:rgba(238,242,255,0.55);
+}
+.member-desc{
+    font-size:0.83rem;
+    color:rgba(238,242,255,0.6);
+    line-height:1.65;
+    margin-bottom:1.2rem;
+}
+.member-footer{
+    border-top:1px solid var(--border);
+    padding:0.75rem 1.1rem;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:0.5rem;
+    margin-top:auto;
+}
+.member-contrib{
+    font-size:0.78rem;
+    color:var(--text-muted);
+    display:flex;
+    align-items:center;
+    gap:0.4rem;
+}
+/* ── Skills section ── */
+.skills-row{
+    display:flex;
+    flex-wrap:wrap;
+    gap:0.4rem;
+    margin-top:0.5rem;
+    margin-bottom:0.8rem;
+}
+.skill-bar-wrap{margin-bottom:0.7rem}
+.skill-bar-label{display:flex;justify-content:space-between;font-size:0.78rem;color:rgba(238,242,255,0.7);margin-bottom:4px}
+.skill-bar-track{height:5px;background:rgba(255,255,255,0.06);border-radius:3px}
+.skill-bar-fill{height:100%;border-radius:3px;transition:width 1.5s ease}
+/* ── University section ── */
+.university-block{
+    background:var(--bg-card);
+    border:1px solid var(--border);
+    border-radius:var(--r);
+    padding:2rem;
+    display:flex;
+    align-items:center;
+    gap:2rem;
+    margin-top:4rem;
+    flex-wrap:wrap;
+}
+.uni-icon{
+    width:80px;height:80px;
+    border-radius:16px;
+    background:linear-gradient(135deg,rgba(67,97,238,0.25),rgba(0,180,216,0.1));
+    border:1px solid rgba(67,97,238,0.3);
+    display:flex;align-items:center;justify-content:center;
+    font-size:2rem;color:var(--blue);
+    flex-shrink:0;
+}
+.uni-text h3{font-size:1.2rem;font-weight:700;color:#fff;margin-bottom:0.3rem}
+.uni-text p{font-size:0.88rem;color:rgba(238,242,255,0.65);line-height:1.6}
+/* ── Section heading ── */
+.about-section-heading{
+    display:flex;
+    align-items:center;
+    gap:0.8rem;
+    margin-bottom:1.5rem;
+}
+.about-section-heading h2{font-size:1.5rem;font-weight:700;color:#fff}
+.heading-icon{
+    width:40px;height:40px;
+    border-radius:10px;
+    display:flex;align-items:center;justify-content:center;
+    font-size:1rem;
+    flex-shrink:0;
+}
+@media(max-width:640px){
+    .supervisor-card{flex-direction:column;align-items:center;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════════ NAVBAR ══════════════ -->
+<nav class="navbar">
+  <div class="navbar-inner">
+    <a href="index.html" class="nav-brand"><span class="heart">❤</span> CardioSense <span class="nav-badge">25-26J-337</span></a>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="domain.html">Domain</a>
+      <div class="nav-dropdown">
+        <button class="nav-drop-btn">Milestones <span class="arrow">▾</span></button>
+        <div class="dropdown-menu">
+          <a href="milestones.html#proposal">Project Proposal <span class="drop-meta">Aug 2025</span></a>
+          <div class="dropdown-divider"></div>
+          <a href="milestones.html#pp1">Progress Presentation I <span class="drop-meta">Nov 2025</span></a>
+          <div class="dropdown-divider"></div>
+          <a href="milestones.html#pp2">Progress Presentation II <span class="drop-meta">Mar 2026</span></a>
+          <div class="dropdown-divider"></div>
+          <a href="milestones.html#final">Final Assessment <span class="drop-meta">May 2026</span></a>
+        </div>
+      </div>
+      <a href="documents.html">Documents</a>
+      <a href="presentations.html">Presentations</a>
+      <a href="about.html" class="active">About Us</a>
+      <a href="contact.html" class="nav-cta">Contact</a>
+    </div>
+    <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="page-content">
+
+  <!-- ══════════════ PAGE HERO ══════════════ -->
+  <section class="page-hero">
+    <div class="container">
+      <div class="page-hero-label"><i class="fa fa-users"></i> The Research Team</div>
+      <h1 class="page-hero-title">Meet the <span class="gradient-text">Team</span></h1>
+      <p class="page-hero-sub">Four final-year undergraduate researchers from SLIIT's Faculty of Computing, building the next generation of AI-powered cardiovascular care under the guidance of an expert supervisor.</p>
+    </div>
+  </section>
+
+  <!-- ══════════════ MAIN CONTENT ══════════════ -->
+  <section style="padding:0 0 5rem">
+    <div class="container">
+
+      <!-- ── Supervisor ── -->
+      <div class="about-section-heading reveal">
+        <div class="heading-icon" style="background:rgba(255,209,102,0.1);color:var(--yellow)"><i class="fa fa-star"></i></div>
+        <h2>Research Supervisor</h2>
+      </div>
+
+      <div class="supervisor-card reveal">
+        <img src="Profile/Manori Gamage.jpeg" alt="Mrs. Manori Gamage" class="supervisor-avatar" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none;width:160px;height:160px;border-radius:50%;background:linear-gradient(135deg,var(--yellow),var(--red));align-items:center;justify-content:center;font-size:3rem;font-weight:800;color:#fff;font-family:'Rajdhani',sans-serif;flex-shrink:0;border:4px solid rgba(255,209,102,0.5)">MG</div>
+        <div>
+          <div class="sv-role"><i class="fa fa-user-shield"></i> Supervisor</div>
+          <div class="sv-name">Mrs. Manori Gamage</div>
+          <div class="sv-dept">Department of Information Technology, Faculty of Computing &mdash; SLIIT</div>
+          <div class="sv-bio">
+            Mrs. Manori Gamage serves as the academic supervisor for the CardioSense research project, providing expert guidance across all four research components. With extensive experience in machine learning, medical informatics, and software engineering research, she has mentored numerous undergraduate research projects to publication. Her supervision ensures the CardioSense system maintains rigorous academic standards while addressing real clinical needs in cardiovascular care.
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Team Members ── -->
+      <div class="about-section-heading reveal">
+        <div class="heading-icon" style="background:rgba(67,97,238,0.1);color:var(--blue)"><i class="fa fa-users-cog"></i></div>
+        <h2>Research Team</h2>
+      </div>
+
+      <div class="team-grid">
+
+        <!-- Daniru Malalagama — Component 1 -->
+        <div class="member-card reveal">
+          <div class="member-accent-line" style="background:var(--red)"></div>
+          <div class="member-photo-wrap">
+            <img src="Profile/Daniru Malalagama.jpeg" alt="Daniru Malalagama" class="member-photo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="member-photo-fallback" style="display:none;background:linear-gradient(135deg,rgba(230,57,70,0.4),rgba(230,57,70,0.1))">DM</div>
+            <div class="member-photo-overlay" style="background:linear-gradient(to bottom,transparent,var(--bg-card))"></div>
+          </div>
+          <div class="member-body">
+            <span class="member-comp-pill badge-c1">Component 1</span>
+            <div class="member-name">Daniru Malalagama</div>
+            <div class="member-id">IT22126856</div>
+            <div class="member-focus"><i class="fa fa-heartbeat" style="color:var(--red);margin-right:0.4rem"></i>Cardiovascular Risk Prediction</div>
+            <div class="member-tech-list">
+              <span class="member-tech">Logistic Regression</span>
+              <span class="member-tech">TF-IDF</span>
+              <span class="member-tech">SHAP</span>
+              <span class="member-tech">StandardScaler</span>
+              <span class="member-tech">Scikit-learn</span>
+              <span class="member-tech">Python</span>
+            </div>
+            <div class="member-desc">
+              Develops a hybrid NLP-ML pipeline combining TF-IDF text vectorisation of symptom descriptions with structured clinical features (age, BP, cholesterol, lifestyle) using Logistic Regression. Achieves 97.5% accuracy and 98.34% ROC-AUC on the cardiovascular risk dataset (13 features).
+            </div>
+            <div class="skill-bar-wrap">
+              <div class="skill-bar-label"><span>ML Pipeline (Accuracy: 97.5%)</span><span style="color:var(--red)">97%</span></div>
+              <div class="skill-bar-track"><div class="skill-bar-fill" style="width:97%;background:var(--red)"></div></div>
+            </div>
+            <div class="skill-bar-wrap">
+              <div class="skill-bar-label"><span>Model Explainability (SHAP)</span><span style="color:var(--red)">90%</span></div>
+              <div class="skill-bar-track"><div class="skill-bar-fill" style="width:90%;background:var(--red)"></div></div>
+            </div>
+          </div>
+          <div class="member-footer" style="justify-content:flex-end">
+            <span style="font-size:0.75rem;color:var(--text-muted);background:rgba(230,57,70,0.08);padding:3px 9px;border-radius:10px;border:1px solid rgba(230,57,70,0.2)">C1 Lead</span>
+          </div>
+        </div>
+
+        <!-- Sahan Athukorala — Component 2 -->
+        <div class="member-card reveal">
+          <div class="member-accent-line" style="background:var(--blue)"></div>
+          <div class="member-photo-wrap">
+            <img src="Profile/Sahan Athukorala.jpeg" alt="Sahan Athukorala" class="member-photo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="member-photo-fallback" style="display:none;background:linear-gradient(135deg,rgba(67,97,238,0.4),rgba(67,97,238,0.1))">SA</div>
+            <div class="member-photo-overlay" style="background:linear-gradient(to bottom,transparent,var(--bg-card))"></div>
+          </div>
+          <div class="member-body">
+            <span class="member-comp-pill badge-c2">Component 2</span>
+            <div class="member-name">Sahan Athukorala</div>
+            <div class="member-id">IT22296146</div>
+            <div class="member-focus"><i class="fa fa-x-ray" style="color:var(--blue);margin-right:0.4rem"></i>Chest X-Ray Analysis</div>
+            <div class="member-tech-list">
+              <span class="member-tech">DenseNet-121</span>
+              <span class="member-tech">Grad-CAM</span>
+              <span class="member-tech">PyTorch</span>
+              <span class="member-tech">14-label Multi-label</span>
+              <span class="member-tech">CheXpert</span>
+              <span class="member-tech">opencv-python</span>
+            </div>
+            <div class="member-desc">
+              Fine-tunes DenseNet-121 (PyTorch) on 14-label chest X-ray pathology classification including cardiomegaly, pleural effusion, and atelectasis. Integrates Grad-CAM heatmaps for visual explainability and uses class-balanced training to address dataset imbalance on the CheXpert dataset.
+            </div>
+            <div class="skill-bar-wrap">
+              <div class="skill-bar-label"><span>Deep Learning (DenseNet-121)</span><span style="color:var(--blue)">94%</span></div>
+              <div class="skill-bar-track"><div class="skill-bar-fill" style="width:94%;background:var(--blue)"></div></div>
+            </div>
+            <div class="skill-bar-wrap">
+              <div class="skill-bar-label"><span>Medical Imaging / XAI</span><span style="color:var(--blue)">88%</span></div>
+              <div class="skill-bar-track"><div class="skill-bar-fill" style="width:88%;background:var(--blue)"></div></div>
+            </div>
+          </div>
+          <div class="member-footer" style="justify-content:flex-end">
+            <span style="font-size:0.75rem;color:var(--text-muted);background:rgba(67,97,238,0.08);padding:3px 9px;border-radius:10px;border:1px solid rgba(67,97,238,0.2)">C2 Lead</span>
+          </div>
+        </div>
+
+        <!-- Radeesa Randini — Component 3 -->
+        <div class="member-card reveal">
+          <div class="member-accent-line" style="background:var(--cyan)"></div>
+          <div class="member-photo-wrap">
+            <img src="Profile/Radeesa Randini.jpeg" alt="Radeesa Randini" class="member-photo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="member-photo-fallback" style="display:none;background:linear-gradient(135deg,rgba(0,180,216,0.4),rgba(0,180,216,0.1))">RR</div>
+            <div class="member-photo-overlay" style="background:linear-gradient(to bottom,transparent,var(--bg-card))"></div>
+          </div>
+          <div class="member-body">
+            <span class="member-comp-pill badge-c3">Component 3</span>
+            <div class="member-name">Radeesa Randini</div>
+            <div class="member-id">IT22638854</div>
+            <div class="member-focus"><i class="fa fa-utensils" style="color:var(--cyan);margin-right:0.4rem"></i>Personalised Recommendations</div>
+            <div class="member-tech-list">
+              <span class="member-tech">XGBoost (calibrated)</span>
+              <span class="member-tech">OneVsRest LR</span>
+              <span class="member-tech">Bootstrap Ensemble</span>
+              <span class="member-tech">15 Labels</span>
+              <span class="member-tech">Kaggle 70K</span>
+              <span class="member-tech">Counterfactual AI</span>
+            </div>
+            <div class="member-desc">
+              Trains a calibrated XGBoost risk model (ROC-AUC: 0.7999) and a OneVsRest Logistic Regression recommender (mean ROC-AUC: 0.9951) on 68,583 cardiovascular records. Outputs 15 ranked lifestyle recommendations (diet, activity, smoking, sleep, clinical follow-up) with bootstrap confidence scoring and counterfactual risk-reduction ranking.
+            </div>
+            <div class="skill-bar-wrap">
+              <div class="skill-bar-label"><span>Risk Model (ROC-AUC: 0.7999)</span><span style="color:var(--cyan)">80%</span></div>
+              <div class="skill-bar-track"><div class="skill-bar-fill" style="width:80%;background:var(--cyan)"></div></div>
+            </div>
+            <div class="skill-bar-wrap">
+              <div class="skill-bar-label"><span>Recommender (Mean ROC-AUC: 0.9951)</span><span style="color:var(--cyan)">99%</span></div>
+              <div class="skill-bar-track"><div class="skill-bar-fill" style="width:99%;background:var(--cyan)"></div></div>
+            </div>
+          </div>
+          <div class="member-footer" style="justify-content:flex-end">
+            <span style="font-size:0.75rem;color:var(--text-muted);background:rgba(0,180,216,0.08);padding:3px 9px;border-radius:10px;border:1px solid rgba(0,180,216,0.2)">C3 Lead</span>
+          </div>
+        </div>
+
+        <!-- Shehan Kuruneru — Component 4 -->
+        <div class="member-card reveal">
+          <div class="member-accent-line" style="background:var(--purple)"></div>
+          <div class="member-photo-wrap">
+            <img src="Profile/Shehan Kuruneru.jpeg" alt="Shehan Kuruneru" class="member-photo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="member-photo-fallback" style="display:none;background:linear-gradient(135deg,rgba(114,9,183,0.4),rgba(114,9,183,0.1))">SK</div>
+            <div class="member-photo-overlay" style="background:linear-gradient(to bottom,transparent,var(--bg-card))"></div>
+          </div>
+          <div class="member-body">
+            <span class="member-comp-pill badge-c4">Component 4</span>
+            <div class="member-name">Shehan Kuruneru</div>
+            <div class="member-id">IT22230706</div>
+            <div class="member-focus"><i class="fa fa-robot" style="color:var(--purple);margin-right:0.4rem"></i>Mental Health Monitoring Chatbot</div>
+            <div class="member-tech-list">
+              <span class="member-tech">TinyLlama-1.1B</span>
+              <span class="member-tech">QLoRA (4-bit)</span>
+              <span class="member-tech">LoRA rank=16</span>
+              <span class="member-tech">PHQ-9 / GAD-7</span>
+              <span class="member-tech">MentalChat16K</span>
+              <span class="member-tech">Empathetic Dialogues</span>
+            </div>
+            <div class="member-desc">
+              Fine-tunes TinyLlama-1.1B (LlamaForCausalLM) using QLoRA (4-bit quantisation, rank=16) on 38,249 mental health conversations from MentalChat16K, Empathetic Dialogues, MedQuAD (cardiac-filtered), and CounselChat. The trained model provides empathetic cardiac patient support, administers PHQ-9/GAD-7 assessments, and generates risk-tiered clinical alerts.
+            </div>
+            <div class="skill-bar-wrap">
+              <div class="skill-bar-label"><span>LLM Fine-tuning / QLoRA</span><span style="color:var(--purple)">92%</span></div>
+              <div class="skill-bar-track"><div class="skill-bar-fill" style="width:92%;background:var(--purple)"></div></div>
+            </div>
+            <div class="skill-bar-wrap">
+              <div class="skill-bar-label"><span>Clinical Conversational AI</span><span style="color:var(--purple)">88%</span></div>
+              <div class="skill-bar-track"><div class="skill-bar-fill" style="width:88%;background:var(--purple)"></div></div>
+            </div>
+          </div>
+          <div class="member-footer" style="justify-content:flex-end">
+            <span style="font-size:0.75rem;color:var(--text-muted);background:rgba(114,9,183,0.08);padding:3px 9px;border-radius:10px;border:1px solid rgba(114,9,183,0.2)">C4 Lead</span>
+          </div>
+        </div>
+
+      </div><!-- /team-grid -->
+
+      <!-- ── Project Info ── -->
+      <div class="university-block reveal">
+        <div class="uni-icon"><i class="fa fa-university"></i></div>
+        <div class="uni-text">
+          <h3>Sri Lanka Institute of Information Technology (SLIIT)</h3>
+          <p>Faculty of Computing &mdash; Department of Information Technology &nbsp;|&nbsp; Academic Year 2025–2026<br>
+          This project is conducted as a final-year undergraduate research project (IT Project) under the Bachelor of Science Honours in Information Technology degree programme. Project reference: <strong style="color:rgba(238,242,255,0.9)">25-26J-337</strong>.</p>
+        </div>
+      </div>
+
+      <!-- ── How it works — Team structure ── -->
+      <div class="reveal" style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r);padding:2rem;margin-top:2rem">
+        <h3 style="color:#fff;margin-bottom:1.5rem;font-size:1.1rem"><i class="fa fa-sitemap" style="color:var(--blue);margin-right:0.5rem"></i> Project Structure</h3>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem">
+          <div style="background:var(--bg-primary);border-radius:10px;padding:1rem;border:1px solid var(--border);text-align:center">
+            <div style="font-size:1.6rem;margin-bottom:0.5rem"><i class="fa fa-heartbeat" style="color:var(--red)"></i></div>
+            <div style="font-size:0.78rem;font-weight:700;color:#fff;margin-bottom:0.3rem">Component 1</div>
+            <div style="font-size:0.73rem;color:var(--text-muted)">Risk Prediction<br>Daniru Malalagama</div>
+          </div>
+          <div style="background:var(--bg-primary);border-radius:10px;padding:1rem;border:1px solid var(--border);text-align:center">
+            <div style="font-size:1.6rem;margin-bottom:0.5rem"><i class="fa fa-x-ray" style="color:var(--blue)"></i></div>
+            <div style="font-size:0.78rem;font-weight:700;color:#fff;margin-bottom:0.3rem">Component 2</div>
+            <div style="font-size:0.73rem;color:var(--text-muted)">CXR Analysis<br>Sahan Athukorala</div>
+          </div>
+          <div style="background:var(--bg-primary);border-radius:10px;padding:1rem;border:1px solid var(--border);text-align:center">
+            <div style="font-size:1.6rem;margin-bottom:0.5rem"><i class="fa fa-utensils" style="color:var(--cyan)"></i></div>
+            <div style="font-size:0.78rem;font-weight:700;color:#fff;margin-bottom:0.3rem">Component 3</div>
+            <div style="font-size:0.73rem;color:var(--text-muted)">Recommendations<br>Radeesa Randini</div>
+          </div>
+          <div style="background:var(--bg-primary);border-radius:10px;padding:1rem;border:1px solid var(--border);text-align:center">
+            <div style="font-size:1.6rem;margin-bottom:0.5rem"><i class="fa fa-robot" style="color:var(--purple)"></i></div>
+            <div style="font-size:0.78rem;font-weight:700;color:#fff;margin-bottom:0.3rem">Component 4</div>
+            <div style="font-size:0.73rem;color:var(--text-muted)">Mental Health Bot<br>Shehan Kuruneru</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</div><!-- /page-content -->
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-bottom" style="padding-top:2rem;border-top:1px solid var(--border)">
+      <a href="index.html" class="nav-brand"><span class="heart">❤</span> CardioSense <span class="nav-badge">25-26J-337</span></a>
+      <span style="font-size:0.82rem;color:var(--text-muted)">© <span id="year"></span> SLIIT Research Project. Supervisor: Mrs. Manori Gamage</span>
+    </div>
+  </div>
+</footer>
+<script src="js/main.js"></script>
+</body>
+</html>

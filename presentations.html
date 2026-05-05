@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Presentations | CardioSense Research</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Rajdhani:wght@500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="css/style.css">
+<style>
+/* ── Presentation Timeline Layout ────────────────────────── */
+.pres-timeline{
+    position:relative;
+    padding-left:2rem;
+}
+.pres-timeline::before{
+    content:'';
+    position:absolute;
+    left:0;top:0;bottom:0;
+    width:2px;
+    background:linear-gradient(180deg,var(--red),var(--purple),var(--blue),var(--cyan),var(--green));
+    border-radius:2px;
+}
+.pres-item{
+    position:relative;
+    margin-bottom:2.5rem;
+}
+.pres-item:last-child{margin-bottom:0}
+.pres-dot{
+    position:absolute;
+    left:-2.56rem;
+    top:1.8rem;
+    width:14px;height:14px;
+    border-radius:50%;
+    border:2px solid var(--bg-primary);
+    z-index:1;
+    box-shadow:0 0 10px currentColor;
+}
+/* ── Presentation Card ───────────────────────────────────── */
+.pres-card{
+    background:var(--bg-card);
+    border:1px solid var(--border);
+    border-radius:var(--r);
+    overflow:hidden;
+    transition:var(--transition);
+}
+.pres-card:hover{
+    border-color:rgba(255,255,255,0.12);
+    box-shadow:0 16px 48px rgba(0,0,0,0.4);
+    transform:translateX(4px);
+}
+.pres-card-top{
+    display:flex;
+    align-items:stretch;
+    gap:0;
+}
+.pres-accent-bar{width:4px;flex-shrink:0}
+.pres-card-main{
+    display:flex;
+    align-items:flex-start;
+    gap:1.5rem;
+    padding:1.8rem;
+    flex:1;
+    flex-wrap:wrap;
+}
+.pres-slide-preview{
+    width:180px;
+    height:108px;
+    border-radius:8px;
+    overflow:hidden;
+    flex-shrink:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+    border:1px solid rgba(255,255,255,0.06);
+}
+.pres-slide-preview::after{
+    content:attr(data-label);
+    position:absolute;
+    bottom:6px;right:8px;
+    font-size:0.65rem;
+    font-weight:700;
+    color:rgba(255,255,255,0.5);
+    letter-spacing:0.08em;
+}
+.pres-icon-large{font-size:2.5rem;z-index:1;position:relative;filter:drop-shadow(0 0 12px currentColor)}
+.pres-info{flex:1;min-width:200px}
+.pres-number{
+    display:inline-flex;
+    align-items:center;
+    gap:0.4rem;
+    font-size:0.72rem;
+    font-weight:700;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    margin-bottom:0.5rem;
+    padding:3px 10px;
+    border-radius:14px;
+}
+.pres-title{font-size:1.25rem;font-weight:700;color:#fff;margin-bottom:0.4rem;line-height:1.3}
+.pres-date-row{
+    display:flex;
+    align-items:center;
+    gap:1rem;
+    flex-wrap:wrap;
+    margin-bottom:0.8rem;
+}
+.pres-date{font-size:0.82rem;color:var(--text-muted);display:flex;align-items:center;gap:0.4rem}
+.pres-desc{font-size:0.88rem;color:rgba(238,242,255,0.7);line-height:1.65;margin-bottom:1rem}
+.pres-chips{display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:1.2rem}
+.pres-chip{
+    display:inline-flex;
+    align-items:center;
+    gap:5px;
+    padding:4px 10px;
+    border-radius:20px;
+    font-size:0.75rem;
+    background:rgba(255,255,255,0.05);
+    border:1px solid rgba(255,255,255,0.08);
+    color:rgba(238,242,255,0.65);
+}
+.pres-actions{
+    display:flex;
+    gap:0.7rem;
+    flex-wrap:wrap;
+}
+.btn-pres{
+    display:inline-flex;
+    align-items:center;
+    gap:0.5rem;
+    padding:8px 18px;
+    border-radius:8px;
+    font-size:0.83rem;
+    font-weight:600;
+    text-decoration:none;
+    transition:var(--transition);
+    border:1px solid;
+    cursor:pointer;
+    background:none;
+}
+.btn-pres-primary{background:var(--blue);color:#fff;border-color:var(--blue)}
+.btn-pres-primary:hover{filter:brightness(1.2)}
+.btn-pres-outline{background:rgba(255,255,255,0.04);color:rgba(238,242,255,0.7);border-color:rgba(255,255,255,0.12)}
+.btn-pres-outline:hover{background:rgba(255,255,255,0.08);color:#fff}
+.soon-tag{
+    display:inline-flex;
+    align-items:center;
+    gap:5px;
+    padding:5px 14px;
+    border-radius:20px;
+    font-size:0.78rem;
+    font-weight:600;
+    background:rgba(255,255,255,0.04);
+    border:1px dashed rgba(255,255,255,0.12);
+    color:var(--text-muted);
+}
+/* ── Highlights row ── */
+.pres-highlights{
+    border-top:1px solid var(--border);
+    padding:1rem 1.8rem;
+    display:flex;
+    flex-wrap:wrap;
+    gap:1.5rem;
+}
+.pres-hl{
+    display:flex;
+    align-items:flex-start;
+    gap:0.6rem;
+}
+.pres-hl-icon{
+    width:28px;height:28px;
+    border-radius:7px;
+    display:flex;align-items:center;justify-content:center;
+    flex-shrink:0;
+    font-size:0.75rem;
+    margin-top:1px;
+}
+.pres-hl-text strong{display:block;font-size:0.82rem;font-weight:600;color:rgba(238,242,255,0.9);margin-bottom:2px}
+.pres-hl-text span{font-size:0.75rem;color:var(--text-muted)}
+/* ── Overview panel ── */
+.overview-panel{
+    background:var(--bg-card);
+    border:1px solid var(--border);
+    border-radius:var(--r);
+    padding:2rem;
+    margin-bottom:3rem;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:1.5rem;
+}
+@media(max-width:700px){.overview-panel{grid-template-columns:repeat(2,1fr)}}
+.ov-item{text-align:center}
+.ov-num{font-size:2rem;font-weight:800;font-family:'Rajdhani',sans-serif}
+.ov-label{font-size:0.76rem;color:var(--text-muted)}
+</style>
+</head>
+<body>
+
+<!-- ══════════════ NAVBAR ══════════════ -->
+<nav class="navbar">
+  <div class="navbar-inner">
+    <a href="index.html" class="nav-brand"><span class="heart">❤</span> CardioSense <span class="nav-badge">25-26J-337</span></a>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="domain.html">Domain</a>
+      <div class="nav-dropdown">
+        <button class="nav-drop-btn">Milestones <span class="arrow">▾</span></button>
+        <div class="dropdown-menu">
+          <a href="milestones.html#proposal">Project Proposal <span class="drop-meta">Aug 2025</span></a>
+          <div class="dropdown-divider"></div>
+          <a href="milestones.html#pp1">Progress Presentation I <span class="drop-meta">Nov 2025</span></a>
+          <div class="dropdown-divider"></div>
+          <a href="milestones.html#pp2">Progress Presentation II <span class="drop-meta">Mar 2026</span></a>
+          <div class="dropdown-divider"></div>
+          <a href="milestones.html#final">Final Assessment <span class="drop-meta">May 2026</span></a>
+        </div>
+      </div>
+      <a href="documents.html">Documents</a>
+      <a href="presentations.html" class="active">Presentations</a>
+      <a href="about.html">About Us</a>
+      <a href="contact.html" class="nav-cta">Contact</a>
+    </div>
+    <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="page-content">
+
+  <!-- ══════════════ PAGE HERO ══════════════ -->
+  <section class="page-hero">
+    <div class="container">
+      <div class="page-hero-label"><i class="fa fa-file-powerpoint"></i> Research Presentations</div>
+      <h1 class="page-hero-title">Project <span class="gradient-text">Presentations</span></h1>
+      <p class="page-hero-sub">Slide decks and presentation recordings for every CardioSense milestone — from Project Proposal through to the Final Assessment.</p>
+    </div>
+  </section>
+
+  <!-- ══════════════ MAIN CONTENT ══════════════ -->
+  <section style="padding:0 0 5rem">
+    <div class="container">
+
+      <!-- Overview panel -->
+      <div class="overview-panel reveal">
+        <div class="ov-item"><div class="ov-num" style="color:var(--green)">3</div><div class="ov-label">Completed</div></div>
+        <div class="ov-item"><div class="ov-num" style="color:var(--text-muted)">1</div><div class="ov-label">Upcoming</div></div>
+        <div class="ov-item"><div class="ov-num" style="color:var(--blue)">4</div><div class="ov-label">Total Milestones</div></div>
+        <div class="ov-item"><div class="ov-num" style="color:var(--cyan)">May 2026</div><div class="ov-label">Final Assessment</div></div>
+      </div>
+
+      <!-- ── Timeline ── -->
+      <div class="pres-timeline">
+
+        <!-- ══ PROPOSAL ══ -->
+        <div class="pres-item reveal">
+          <div class="pres-dot" style="background:var(--red);color:var(--red)"></div>
+          <div class="pres-card">
+            <div class="pres-card-top">
+              <div class="pres-accent-bar" style="background:var(--red)"></div>
+              <div class="pres-card-main">
+                <div class="pres-slide-preview" style="background:linear-gradient(135deg,rgba(230,57,70,0.25),rgba(230,57,70,0.05))" data-label="PROPOSAL">
+                  <i class="fa fa-file-powerpoint pres-icon-large" style="color:var(--red)"></i>
+                </div>
+                <div class="pres-info">
+                  <span class="pres-number" style="background:rgba(230,57,70,0.12);color:var(--red);border:1px solid rgba(230,57,70,0.25)"><i class="fa fa-circle" style="font-size:0.4rem"></i> Milestone 1</span>
+                  <div class="pres-title">Project Proposal Presentation</div>
+                  <div class="pres-date-row">
+                    <span class="pres-date"><i class="fa fa-calendar"></i> August 2025</span>
+                    <span class="status-badge status-done" style="font-size:0.72rem;padding:3px 10px"><i class="fa fa-check-circle"></i> Completed</span>
+                  </div>
+                  <div class="pres-desc">
+                    The inaugural milestone presentation introducing the CardioSense research concept, problem domain, literature gap analysis, proposed solution architecture, 4-component research plan, and initial methodology for all team members. Presented before the SLIIT faculty panel for formal project approval.
+                  </div>
+                  <div class="pres-chips">
+                    <span class="pres-chip"><i class="fa fa-bullseye"></i> Problem Statement</span>
+                    <span class="pres-chip"><i class="fa fa-book"></i> Literature Survey</span>
+                    <span class="pres-chip"><i class="fa fa-sitemap"></i> System Architecture</span>
+                    <span class="pres-chip"><i class="fa fa-calendar-alt"></i> Project Plan</span>
+                    <span class="pres-chip"><i class="fa fa-users"></i> Team Roles</span>
+                  </div>
+                  <div class="pres-actions">
+                    <a href="https://drive.google.com/drive/folders/1zCmqIlpx9cuGVqsfNgKhzdTsJnJ6yKYV?usp=sharing" target="_blank" rel="noopener" class="btn-pres btn-pres-primary" style="background:rgba(230,57,70,0.15);color:var(--red);border-color:rgba(230,57,70,0.35)"><i class="fa fa-brands fa-google-drive"></i> Open in Google Drive</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="pres-highlights">
+              <div class="pres-hl">
+                <div class="pres-hl-icon" style="background:rgba(230,57,70,0.12);color:var(--red)"><i class="fa fa-users"></i></div>
+                <div class="pres-hl-text"><strong>Presenters</strong><span>All 4 team members</span></div>
+              </div>
+              <div class="pres-hl">
+                <div class="pres-hl-icon" style="background:rgba(230,57,70,0.12);color:var(--red)"><i class="fa fa-clock"></i></div>
+                <div class="pres-hl-text"><strong>Duration</strong><span>~30 minutes + Q&amp;A</span></div>
+              </div>
+              <div class="pres-hl">
+                <div class="pres-hl-icon" style="background:rgba(230,57,70,0.12);color:var(--red)"><i class="fa fa-file-powerpoint"></i></div>
+                <div class="pres-hl-text"><strong>Format</strong><span>PowerPoint / PDF slides</span></div>
+              </div>
+              <div class="pres-hl">
+                <div class="pres-hl-icon" style="background:rgba(6,214,160,0.12);color:var(--green)"><i class="fa fa-check"></i></div>
+                <div class="pres-hl-text"><strong>Status</strong><span>Submitted &amp; approved</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ══ PP1 ══ -->
+        <div class="pres-item reveal">
+          <div class="pres-dot" style="background:var(--purple);color:var(--purple)"></div>
+          <div class="pres-card">
+            <div class="pres-card-top">
+              <div class="pres-accent-bar" style="background:var(--purple)"></div>
+              <div class="pres-card-main">
+                <div class="pres-slide-preview" style="background:linear-gradient(135deg,rgba(114,9,183,0.25),rgba(114,9,183,0.05))" data-label="PP1">
+                  <i class="fa fa-chart-line pres-icon-large" style="color:var(--purple)"></i>
+                </div>
+                <div class="pres-info">
+                  <span class="pres-number" style="background:rgba(114,9,183,0.12);color:var(--purple);border:1px solid rgba(114,9,183,0.25)"><i class="fa fa-circle" style="font-size:0.4rem"></i> Milestone 2</span>
+                  <div class="pres-title">Progress Presentation I</div>
+                  <div class="pres-date-row">
+                    <span class="pres-date"><i class="fa fa-calendar"></i> November 2025</span>
+                    <span class="status-badge status-done" style="font-size:0.72rem;padding:3px 10px"><i class="fa fa-check-circle"></i> Completed</span>
+                  </div>
+                  <div class="pres-desc">
+                    The first progress check-in presenting initial model development results for all four components. Covers data preprocessing pipelines, baseline model performance (accuracy, F1, AUROC), preliminary literature findings, and demonstrates the foundational web application with partial component integration.
+                  </div>
+                  <div class="pres-chips">
+                    <span class="pres-chip"><i class="fa fa-database"></i> Data Pipelines</span>
+                    <span class="pres-chip"><i class="fa fa-brain"></i> Baseline Models</span>
+                    <span class="pres-chip"><i class="fa fa-chart-bar"></i> Initial Results</span>
+                    <span class="pres-chip"><i class="fa fa-laptop-code"></i> App Demo</span>
+                    <span class="pres-chip"><i class="fa fa-road"></i> Roadmap Update</span>
+                  </div>
+                  <div class="pres-actions">
+                    <a href="https://drive.google.com/drive/folders/1zCmqIlpx9cuGVqsfNgKhzdTsJnJ6yKYV?usp=sharing" target="_blank" rel="noopener" class="btn-pres btn-pres-primary" style="background:rgba(114,9,183,0.15);color:var(--purple);border-color:rgba(114,9,183,0.35)"><i class="fa fa-brands fa-google-drive"></i> Open in Google Drive</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="pres-highlights">
+              <div class="pres-hl">
+                <div class="pres-hl-icon" style="background:rgba(114,9,183,0.12);color:var(--purple)"><i class="fa fa-users"></i></div>
+                <div class="pres-hl-text"><strong>Presenters</strong><span>All 4 team members</span></div>
+              </div>
+              <div class="pres-hl">
+                <div class="pres-hl-icon" style="background:rgba(114,9,183,0.12);color:var(--purple)"><i class="fa fa-clock"></i></div>
+                <div class="pres-hl-text"><strong>Duration</strong><span>~40 minutes + Q&amp;A</span></div>
+              </div>
+              <div class="pres-hl">
+                <div class="pres-hl-icon" style="background:rgba(114,9,183,0.12);color:var(--purple)"><i class="fa fa-percentage"></i></div>
+                <div class="pres-hl-text"><strong>Weight</strong><span>15% of total marks</span></div>
+              </div>
+              <div class="pres-hl">
+                <div class="pres-hl-icon" style="background:rgba(6,214,160,0.12);color:var(--green)"><i class="fa fa-check"></i></div>
+                <div class="pres-hl-text"><strong>Status</strong><span>Presented &amp; assessed</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ══ PP2 ══ -->
+        <div class="pres-item reveal">
+          <div class="pres-dot" style="background:var(--blue);color:var(--blue)"></div>
+          <div class="pres-card">
+            <div class="pres-card-top">
+              <div class="pres-accent-bar" style="background:var(--blue)"></div>
+              <div class="pres-card-main">
+                <div class="pres-slide-preview" style="background:linear-gradient(135deg,rgba(67,97,238,0.25),rgba(67,97,238,0.05))" data-label="PP2">
+                  <i class="fa fa-rocket pres-icon-large" style="color:var(--blue)"></i>
+                </div>
+                <div class="pres-info">
+                  <span class="pres-number" style="background:rgba(67,97,238,0.12);color:var(--blue);border:1px solid rgba(67,97,238,0.25)"><i class="fa fa-circle" style="font-size:0.4rem"></i> Milestone 3</span>
+                  <div class="pres-title">Progress Presentation II</div>
+                  <div class="pres-date-row">
+                    <span class="pres-date"><i class="fa fa-calendar"></i> March 2026</span>
+                    <span class="status-badge status-done" style="font-size:0.72rem;padding:3px 10px"><i class="fa fa-check-circle"></i> Completed</span>
+                  </div>
+                  <div class="pres-desc">
+                    Advanced model development showcase — presented the full CardioSense system with all four AI components integrated. Demonstrated optimised model performance (C1: 97.5% accuracy, C3: ROC-AUC 0.9951), DenseNet-121 Grad-CAM CXR analysis, TinyLlama-1.1B QLoRA chatbot, and complete Firebase-backed web application.
+                  </div>
+                  <div class="pres-chips">
+                    <span class="pres-chip"><i class="fa fa-check-double"></i> All Models Deployed</span>
+                    <span class="pres-chip"><i class="fa fa-eye"></i> SHAP + Grad-CAM XAI</span>
+                    <span class="pres-chip"><i class="fa fa-plug"></i> Full Integration</span>
+                    <span class="pres-chip"><i class="fa fa-vials"></i> Evaluation Complete</span>
+                    <span class="pres-chip"><i class="fa fa-check"></i> System Tested</span>
+                  </div>
+                  <div class="pres-actions">
+                    <a href="https://drive.google.com/drive/folders/1zCmqIlpx9cuGVqsfNgKhzdTsJnJ6yKYV?usp=sharing" target="_blank" rel="noopener" class="btn-pres btn-pres-primary" style="background:rgba(67,97,238,0.15);color:var(--blue);border-color:rgba(67,97,238,0.35)"><i class="fa fa-brands fa-google-drive"></i> Open in Google Drive</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="pres-highlights">
+              <div class="pres-hl">
+                <div class="pres-hl-icon" style="background:rgba(67,97,238,0.12);color:var(--blue)"><i class="fa fa-users"></i></div>
+                <div class="pres-hl-text"><strong>Presenters</strong><span>All 4 team members</span></div>
+              </div>
+              <div class="pres-hl">
+                <div class="pres-hl-icon" style="background:rgba(67,97,238,0.12);color:var(--blue)"><i class="fa fa-clock"></i></div>
+                <div class="pres-hl-text"><strong>Duration</strong><span>~45 minutes + Q&amp;A</span></div>
+              </div>
+              <div class="pres-hl">
+                <div class="pres-hl-icon" style="background:rgba(67,97,238,0.12);color:var(--blue)"><i class="fa fa-percentage"></i></div>
+                <div class="pres-hl-text"><strong>Weight</strong><span>18% of total marks</span></div>
+              </div>
+              <div class="pres-hl">
+                <div class="pres-hl-icon" style="background:rgba(6,214,160,0.12);color:var(--green)"><i class="fa fa-check"></i></div>
+                <div class="pres-hl-text"><strong>Status</strong><span>Presented &amp; assessed</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ══ FINAL ══ -->
+        <div class="pres-item reveal">
+          <div class="pres-dot" style="background:var(--cyan);color:var(--cyan)"></div>
+          <div class="pres-card">
+            <div class="pres-card-top">
+              <div class="pres-accent-bar" style="background:var(--cyan)"></div>
+              <div class="pres-card-main">
+                <div class="pres-slide-preview" style="background:linear-gradient(135deg,rgba(0,180,216,0.25),rgba(0,180,216,0.05))" data-label="FINAL">
+                  <i class="fa fa-trophy pres-icon-large" style="color:var(--cyan)"></i>
+                </div>
+                <div class="pres-info">
+                  <span class="pres-number" style="background:rgba(0,180,216,0.12);color:var(--cyan);border:1px solid rgba(0,180,216,0.25)"><i class="fa fa-circle" style="font-size:0.4rem"></i> Milestone 4</span>
+                  <div class="pres-title">Final Assessment Presentation</div>
+                  <div class="pres-date-row">
+                    <span class="pres-date"><i class="fa fa-calendar"></i> May 2026</span>
+                    <span class="status-badge status-upcoming" style="font-size:0.72rem;padding:3px 10px"><i class="fa fa-clock"></i> Upcoming</span>
+                  </div>
+                  <div class="pres-desc">
+                    The comprehensive final presentation of the complete CardioSense system, covering all four AI components with full evaluation results, live system demonstration, research paper findings, deployment documentation, and future roadmap. Includes contributions to clinical cardiac care workflows.
+                  </div>
+                  <div class="pres-chips">
+                    <span class="pres-chip"><i class="fa fa-check-double"></i> Complete System</span>
+                    <span class="pres-chip"><i class="fa fa-laptop"></i> Live Demo</span>
+                    <span class="pres-chip"><i class="fa fa-file-alt"></i> Research Paper</span>
+                    <span class="pres-chip"><i class="fa fa-chart-pie"></i> Final Evaluation</span>
+                    <span class="pres-chip"><i class="fa fa-forward"></i> Future Work</span>
+                  </div>
+                  <div class="pres-actions">
+                    <span class="soon-tag"><i class="fa fa-clock"></i> Available May 2026</span>
+                    <a href="https://drive.google.com/drive/folders/1zCmqIlpx9cuGVqsfNgKhzdTsJnJ6yKYV?usp=sharing" target="_blank" rel="noopener" class="btn-pres btn-pres-primary" style="background:rgba(0,180,216,0.15);color:var(--cyan);border-color:rgba(0,180,216,0.35)"><i class="fa fa-brands fa-google-drive"></i> Open in Google Drive</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="pres-highlights">
+              <div class="pres-hl">
+                <div class="pres-hl-icon" style="background:rgba(0,180,216,0.12);color:var(--cyan)"><i class="fa fa-users"></i></div>
+                <div class="pres-hl-text"><strong>Presenters</strong><span>All 4 team members</span></div>
+              </div>
+              <div class="pres-hl">
+                <div class="pres-hl-icon" style="background:rgba(0,180,216,0.12);color:var(--cyan)"><i class="fa fa-clock"></i></div>
+                <div class="pres-hl-text"><strong>Duration</strong><span>~50 minutes + Q&amp;A</span></div>
+              </div>
+              <div class="pres-hl">
+                <div class="pres-hl-icon" style="background:rgba(0,180,216,0.12);color:var(--cyan)"><i class="fa fa-percentage"></i></div>
+                <div class="pres-hl-text"><strong>Weight</strong><span>30% of total marks</span></div>
+              </div>
+              <div class="pres-hl">
+                <div class="pres-hl-icon" style="background:rgba(136,146,176,0.12);color:var(--text-muted)"><i class="fa fa-calendar-alt"></i></div>
+                <div class="pres-hl-text"><strong>Status</strong><span>Scheduled May 2026</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /pres-timeline -->
+
+      <!-- ── Marks summary ── -->
+      <div class="reveal" style="margin-top:3rem;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r);padding:2rem">
+        <h3 style="color:#fff;margin-bottom:1.5rem;font-size:1.1rem"><i class="fa fa-percentage" style="color:var(--blue);margin-right:0.5rem"></i> Assessment Breakdown</h3>
+        <div style="display:flex;flex-direction:column;gap:0.8rem">
+          <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap">
+            <span style="min-width:230px;font-size:0.88rem;color:rgba(238,242,255,0.8)"><i class="fa fa-circle" style="font-size:0.5rem;color:var(--red);margin-right:0.5rem"></i> Project Proposal</span>
+            <div style="flex:1;height:8px;background:rgba(255,255,255,0.06);border-radius:4px;min-width:120px"><div style="width:12%;height:100%;background:var(--red);border-radius:4px"></div></div>
+            <span style="font-size:0.85rem;font-weight:700;color:var(--red);min-width:40px">12%</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap">
+            <span style="min-width:230px;font-size:0.88rem;color:rgba(238,242,255,0.8)"><i class="fa fa-circle" style="font-size:0.5rem;color:var(--purple);margin-right:0.5rem"></i> Progress Presentation I</span>
+            <div style="flex:1;height:8px;background:rgba(255,255,255,0.06);border-radius:4px;min-width:120px"><div style="width:15%;height:100%;background:var(--purple);border-radius:4px"></div></div>
+            <span style="font-size:0.85rem;font-weight:700;color:var(--purple);min-width:40px">15%</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap">
+            <span style="min-width:230px;font-size:0.88rem;color:rgba(238,242,255,0.8)"><i class="fa fa-circle" style="font-size:0.5rem;color:var(--blue);margin-right:0.5rem"></i> Progress Presentation II</span>
+            <div style="flex:1;height:8px;background:rgba(255,255,255,0.06);border-radius:4px;min-width:120px"><div style="width:18%;height:100%;background:var(--blue);border-radius:4px"></div></div>
+            <span style="font-size:0.85rem;font-weight:700;color:var(--blue);min-width:40px">18%</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap">
+            <span style="min-width:230px;font-size:0.88rem;color:rgba(238,242,255,0.8)"><i class="fa fa-circle" style="font-size:0.5rem;color:var(--cyan);margin-right:0.5rem"></i> Final Assessment</span>
+            <div style="flex:1;height:8px;background:rgba(255,255,255,0.06);border-radius:4px;min-width:120px"><div style="width:30%;height:100%;background:var(--cyan);border-radius:4px"></div></div>
+            <span style="font-size:0.85rem;font-weight:700;color:var(--cyan);min-width:40px">30%</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</div><!-- /page-content -->
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-bottom" style="padding-top:2rem;border-top:1px solid var(--border)">
+      <a href="index.html" class="nav-brand"><span class="heart">❤</span> CardioSense <span class="nav-badge">25-26J-337</span></a>
+      <span style="font-size:0.82rem;color:var(--text-muted)">© <span id="year"></span> SLIIT Research Project. Supervisor: Mrs. Manori Gamage</span>
+    </div>
+  </div>
+</footer>
+<script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Documents | CardioSense Research</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Rajdhani:wght@500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="css/style.css">
+<style>
+/* ── Document Cards ─────────────────────────────────────── */
+.doc-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(340px,1fr));
+    gap:1.5rem;
+}
+.doc-card{
+    background:var(--bg-card);
+    border:1px solid var(--border);
+    border-radius:var(--r);
+    overflow:hidden;
+    transition:var(--transition);
+    display:flex;
+    flex-direction:column;
+    position:relative;
+}
+.doc-card::after{
+    content:'';
+    position:absolute;
+    inset:0;
+    border-radius:var(--r);
+    opacity:0;
+    transition:opacity 0.3s ease;
+    pointer-events:none;
+}
+.doc-card:hover{transform:translateY(-6px);border-color:rgba(255,255,255,0.12);box-shadow:0 20px 50px rgba(0,0,0,0.4)}
+.doc-card-banner{
+    height:140px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+    overflow:hidden;
+}
+.doc-card-banner::before{
+    content:'';
+    position:absolute;
+    inset:0;
+    background:inherit;
+    filter:blur(20px);
+    opacity:0.3;
+    transform:scale(1.2);
+}
+.banner-c1{background:linear-gradient(135deg,rgba(230,57,70,0.3),rgba(230,57,70,0.05))}
+.banner-c2{background:linear-gradient(135deg,rgba(67,97,238,0.3),rgba(67,97,238,0.05))}
+.banner-c3{background:linear-gradient(135deg,rgba(0,180,216,0.3),rgba(0,180,216,0.05))}
+.banner-c4{background:linear-gradient(135deg,rgba(114,9,183,0.3),rgba(114,9,183,0.05))}
+.banner-combined{background:linear-gradient(135deg,rgba(6,214,160,0.3),rgba(67,97,238,0.1))}
+.doc-icon{
+    font-size:3.5rem;
+    position:relative;
+    z-index:1;
+    filter:drop-shadow(0 0 20px currentColor);
+}
+.doc-body{padding:1.5rem;flex:1;display:flex;flex-direction:column}
+.doc-comp-badge{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    padding:3px 10px;
+    border-radius:20px;
+    font-size:0.72rem;
+    font-weight:700;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    margin-bottom:0.8rem;
+}
+.badge-c1{background:rgba(230,57,70,0.15);color:var(--red);border:1px solid rgba(230,57,70,0.3)}
+.badge-c2{background:rgba(67,97,238,0.15);color:var(--blue);border:1px solid rgba(67,97,238,0.3)}
+.badge-c3{background:rgba(0,180,216,0.15);color:var(--cyan);border:1px solid rgba(0,180,216,0.3)}
+.badge-c4{background:rgba(114,9,183,0.15);color:var(--purple);border:1px solid rgba(114,9,183,0.3)}
+.badge-combined{background:rgba(6,214,160,0.15);color:var(--green);border:1px solid rgba(6,214,160,0.3)}
+.doc-title{font-size:1.1rem;font-weight:700;color:#fff;margin-bottom:0.4rem;line-height:1.3}
+.doc-author{font-size:0.82rem;color:var(--text-muted);margin-bottom:0.8rem;display:flex;align-items:center;gap:0.5rem}
+.doc-author i{font-size:0.75rem}
+.doc-desc{font-size:0.85rem;color:rgba(238,242,255,0.7);line-height:1.6;flex:1;margin-bottom:1.2rem}
+.doc-meta-row{display:flex;gap:0.6rem;flex-wrap:wrap;margin-bottom:1.2rem}
+.doc-tag{
+    display:inline-flex;
+    align-items:center;
+    gap:4px;
+    padding:3px 9px;
+    border-radius:14px;
+    font-size:0.72rem;
+    background:rgba(255,255,255,0.05);
+    border:1px solid rgba(255,255,255,0.08);
+    color:rgba(238,242,255,0.6);
+}
+.doc-footer{
+    padding:1rem 1.5rem;
+    border-top:1px solid var(--border);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:0.8rem;
+    flex-wrap:wrap;
+}
+.doc-file-info{font-size:0.78rem;color:var(--text-muted);display:flex;align-items:center;gap:0.4rem}
+.btn-download{
+    display:inline-flex;
+    align-items:center;
+    gap:0.5rem;
+    padding:7px 16px;
+    border-radius:8px;
+    font-size:0.82rem;
+    font-weight:600;
+    text-decoration:none;
+    transition:var(--transition);
+    border:1px solid;
+}
+.btn-dl-c1{background:rgba(230,57,70,0.1);color:var(--red);border-color:rgba(230,57,70,0.3)}
+.btn-dl-c1:hover{background:rgba(230,57,70,0.25)}
+.btn-dl-c2{background:rgba(67,97,238,0.1);color:var(--blue);border-color:rgba(67,97,238,0.3)}
+.btn-dl-c2:hover{background:rgba(67,97,238,0.25)}
+.btn-dl-c3{background:rgba(0,180,216,0.1);color:var(--cyan);border-color:rgba(0,180,216,0.3)}
+.btn-dl-c3:hover{background:rgba(0,180,216,0.25)}
+.btn-dl-c4{background:rgba(114,9,183,0.1);color:var(--purple);border-color:rgba(114,9,183,0.3)}
+.btn-dl-c4:hover{background:rgba(114,9,183,0.25)}
+/* ── Section Separator ─── */
+.section-sep{
+    display:flex;
+    align-items:center;
+    gap:1rem;
+    margin:3rem 0 1.5rem;
+}
+.section-sep h2{font-size:1.2rem;font-weight:700;color:#fff;white-space:nowrap}
+.section-sep::before,.section-sep::after{
+    content:'';flex:1;height:1px;
+    background:linear-gradient(90deg,transparent,var(--border));
+}
+.section-sep::before{background:linear-gradient(90deg,transparent,var(--border))}
+.section-sep::after{background:linear-gradient(90deg,var(--border),transparent)}
+/* ── Stats banner ─── */
+.doc-stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:1rem;
+    background:var(--bg-card);
+    border:1px solid var(--border);
+    border-radius:var(--r);
+    padding:1.5rem;
+    margin-bottom:2.5rem;
+}
+.doc-stat{text-align:center}
+.doc-stat-num{font-size:1.8rem;font-weight:800;font-family:'Rajdhani',sans-serif}
+.doc-stat-label{font-size:0.75rem;color:var(--text-muted)}
+@media(max-width:600px){
+    .doc-stats{grid-template-columns:repeat(2,1fr)}
+}
+/* ── Drive Folder Cards ─────────────────────────────────── */
+.drive-folders-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
+    gap:1.5rem;
+    margin-bottom:3rem;
+}
+.drive-folder-card{
+    display:flex;
+    flex-direction:column;
+    background:var(--bg-card);
+    border:1px solid var(--border);
+    border-radius:var(--r);
+    overflow:hidden;
+    text-decoration:none;
+    transition:var(--transition);
+}
+.drive-folder-card:hover{
+    transform:translateY(-8px);
+    border-color:rgba(255,255,255,0.13);
+    box-shadow:0 24px 56px rgba(0,0,0,0.45);
+}
+.drive-folder-banner{
+    height:130px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-shrink:0;
+}
+.drive-folder-icon{
+    font-size:3.8rem;
+    filter:drop-shadow(0 0 22px currentColor);
+}
+.drive-folder-body{
+    padding:1.5rem;
+    display:flex;
+    flex-direction:column;
+    flex:1;
+}
+.drive-folder-label{
+    font-size:0.72rem;
+    font-weight:600;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--text-muted);
+    margin-bottom:0.6rem;
+    display:flex;
+    align-items:center;
+    gap:0.4rem;
+}
+.drive-folder-title{
+    font-size:1.4rem;
+    font-weight:800;
+    color:#fff;
+    margin-bottom:0.7rem;
+    font-family:'Rajdhani',sans-serif;
+    line-height:1.2;
+}
+.drive-folder-desc{
+    font-size:0.85rem;
+    color:rgba(238,242,255,0.65);
+    line-height:1.65;
+    flex:1;
+    margin-bottom:1.3rem;
+}
+.drive-folder-btn{
+    display:flex;
+    align-items:center;
+    gap:0.6rem;
+    padding:10px 16px;
+    border-radius:10px;
+    font-size:0.84rem;
+    font-weight:600;
+    border:1px solid;
+    transition:var(--transition);
+}
+.drive-folder-card:hover .drive-folder-btn{
+    filter:brightness(1.2);
+}
+@media(max-width:640px){
+    .drive-folders-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════════ NAVBAR ══════════════ -->
+<nav class="navbar">
+  <div class="navbar-inner">
+    <a href="index.html" class="nav-brand"><span class="heart">❤</span> CardioSense <span class="nav-badge">25-26J-337</span></a>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="domain.html">Domain</a>
+      <div class="nav-dropdown">
+        <button class="nav-drop-btn">Milestones <span class="arrow">▾</span></button>
+        <div class="dropdown-menu">
+          <a href="milestones.html#proposal">Project Proposal <span class="drop-meta">Aug 2025</span></a>
+          <div class="dropdown-divider"></div>
+          <a href="milestones.html#pp1">Progress Presentation I <span class="drop-meta">Nov 2025</span></a>
+          <div class="dropdown-divider"></div>
+          <a href="milestones.html#pp2">Progress Presentation II <span class="drop-meta">Mar 2026</span></a>
+          <div class="dropdown-divider"></div>
+          <a href="milestones.html#final">Final Assessment <span class="drop-meta">May 2026</span></a>
+        </div>
+      </div>
+      <a href="documents.html" class="active">Documents</a>
+      <a href="presentations.html">Presentations</a>
+      <a href="about.html">About Us</a>
+      <a href="contact.html" class="nav-cta">Contact</a>
+    </div>
+    <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="page-content">
+
+  <!-- ══════════════ PAGE HERO ══════════════ -->
+  <section class="page-hero">
+    <div class="container">
+      <div class="page-hero-label"><i class="fa fa-file-alt"></i> Research Artefacts</div>
+      <h1 class="page-hero-title">Research <span class="gradient-text">Documents</span></h1>
+      <p class="page-hero-sub">All CardioSense research artefacts organised into six Google Drive folders — checklists, proposals, progress presentations, reports, and academic papers.</p>
+    </div>
+  </section>
+
+  <!-- ══════════════ MAIN CONTENT ══════════════ -->
+  <section style="padding:0 0 5rem">
+    <div class="container">
+
+      <!-- Quick stats -->
+      <div class="doc-stats reveal">
+        <div class="doc-stat"><div class="doc-stat-num gradient-text">6</div><div class="doc-stat-label">Drive Folders</div></div>
+        <div class="doc-stat"><div class="doc-stat-num gradient-text">4</div><div class="doc-stat-label">Research Components</div></div>
+        <div class="doc-stat"><div class="doc-stat-num gradient-text">4</div><div class="doc-stat-label">Team Members</div></div>
+        <div class="doc-stat"><div class="doc-stat-num gradient-text">2026</div><div class="doc-stat-label">Project Year</div></div>
+      </div>
+
+      <!-- ── Google Drive Folders ── -->
+      <div class="drive-folders-grid">
+
+        <!-- Checklists -->
+        <a class="drive-folder-card reveal" href="https://drive.google.com/drive/folders/17xlNoRSAdWFprAcRqcvHGKCEXi6Zf4kK?usp=sharing" target="_blank" rel="noopener">
+          <div class="drive-folder-banner" style="background:linear-gradient(135deg,rgba(255,209,102,0.22),rgba(255,209,102,0.04))">
+            <i class="fa fa-clipboard-check drive-folder-icon" style="color:var(--yellow)"></i>
+          </div>
+          <div class="drive-folder-body">
+            <div class="drive-folder-label"><i class="fa fa-brands fa-google-drive"></i> Google Drive Folder</div>
+            <div class="drive-folder-title">Checklists</div>
+            <div class="drive-folder-desc">Task checklists, progress tracking sheets, and milestone completion records for all four research components throughout the CardioSense project lifecycle.</div>
+            <div class="drive-folder-btn" style="color:var(--yellow);border-color:rgba(255,209,102,0.35);background:rgba(255,209,102,0.08)">
+              <i class="fa fa-folder-open"></i> Open in Google Drive <i class="fa fa-external-link-alt" style="margin-left:auto;font-size:0.75rem;opacity:0.7"></i>
+            </div>
+          </div>
+        </a>
+
+        <!-- Final Report -->
+        <a class="drive-folder-card reveal" href="https://drive.google.com/drive/folders/1fs8ghsUbcJVN7EDDfhbHHmqxwMFt3_qj?usp=sharing" target="_blank" rel="noopener">
+          <div class="drive-folder-banner" style="background:linear-gradient(135deg,rgba(6,214,160,0.22),rgba(6,214,160,0.04))">
+            <i class="fa fa-file-lines drive-folder-icon" style="color:var(--green)"></i>
+          </div>
+          <div class="drive-folder-body">
+            <div class="drive-folder-label"><i class="fa fa-brands fa-google-drive"></i> Google Drive Folder</div>
+            <div class="drive-folder-title">Final Report</div>
+            <div class="drive-folder-desc">The comprehensive final project report documenting all four research components, system architecture, experimental results, and conclusions for the CardioSense platform.</div>
+            <div class="drive-folder-btn" style="color:var(--green);border-color:rgba(6,214,160,0.35);background:rgba(6,214,160,0.08)">
+              <i class="fa fa-folder-open"></i> Open in Google Drive <i class="fa fa-external-link-alt" style="margin-left:auto;font-size:0.75rem;opacity:0.7"></i>
+            </div>
+          </div>
+        </a>
+
+        <!-- PP1 -->
+        <a class="drive-folder-card reveal" href="https://drive.google.com/drive/folders/1U2GaK_0Kjokt4dYo0YEuvsdKcZICF51g?usp=sharing" target="_blank" rel="noopener">
+          <div class="drive-folder-banner" style="background:linear-gradient(135deg,rgba(230,57,70,0.22),rgba(230,57,70,0.04))">
+            <i class="fa fa-file-powerpoint drive-folder-icon" style="color:var(--red)"></i>
+          </div>
+          <div class="drive-folder-body">
+            <div class="drive-folder-label"><i class="fa fa-brands fa-google-drive"></i> Google Drive Folder</div>
+            <div class="drive-folder-title">Progress Presentation I</div>
+            <div class="drive-folder-desc">Slides, reports, and supporting materials from the first progress presentation assessing initial research progress and early prototype development (November 2025).</div>
+            <div class="drive-folder-btn" style="color:var(--red);border-color:rgba(230,57,70,0.35);background:rgba(230,57,70,0.08)">
+              <i class="fa fa-folder-open"></i> Open in Google Drive <i class="fa fa-external-link-alt" style="margin-left:auto;font-size:0.75rem;opacity:0.7"></i>
+            </div>
+          </div>
+        </a>
+
+        <!-- PP2 -->
+        <a class="drive-folder-card reveal" href="https://drive.google.com/drive/folders/1QekkV6Tus_Kd_YRNi2PM75vPVpVBp3UH?usp=sharing" target="_blank" rel="noopener">
+          <div class="drive-folder-banner" style="background:linear-gradient(135deg,rgba(67,97,238,0.22),rgba(67,97,238,0.04))">
+            <i class="fa fa-chart-line drive-folder-icon" style="color:var(--blue)"></i>
+          </div>
+          <div class="drive-folder-body">
+            <div class="drive-folder-label"><i class="fa fa-brands fa-google-drive"></i> Google Drive Folder</div>
+            <div class="drive-folder-title">Progress Presentation II</div>
+            <div class="drive-folder-desc">Slides, research reports, and model evaluation results from the second progress presentation showcasing trained models and integrated system performance (March 2026).</div>
+            <div class="drive-folder-btn" style="color:var(--blue);border-color:rgba(67,97,238,0.35);background:rgba(67,97,238,0.08)">
+              <i class="fa fa-folder-open"></i> Open in Google Drive <i class="fa fa-external-link-alt" style="margin-left:auto;font-size:0.75rem;opacity:0.7"></i>
+            </div>
+          </div>
+        </a>
+
+        <!-- Proposal -->
+        <a class="drive-folder-card reveal" href="https://drive.google.com/drive/folders/1eXiak_H60taJql2OtDvqG5LyOSAAOBMq?usp=sharing" target="_blank" rel="noopener">
+          <div class="drive-folder-banner" style="background:linear-gradient(135deg,rgba(114,9,183,0.22),rgba(114,9,183,0.04))">
+            <i class="fa fa-lightbulb drive-folder-icon" style="color:var(--purple)"></i>
+          </div>
+          <div class="drive-folder-body">
+            <div class="drive-folder-label"><i class="fa fa-brands fa-google-drive"></i> Google Drive Folder</div>
+            <div class="drive-folder-title">Proposal</div>
+            <div class="drive-folder-desc">The original project proposal documents including scope definition, research objectives, methodology overview, risk register, and project timeline as submitted in August 2025.</div>
+            <div class="drive-folder-btn" style="color:var(--purple);border-color:rgba(114,9,183,0.35);background:rgba(114,9,183,0.08)">
+              <i class="fa fa-folder-open"></i> Open in Google Drive <i class="fa fa-external-link-alt" style="margin-left:auto;font-size:0.75rem;opacity:0.7"></i>
+            </div>
+          </div>
+        </a>
+
+        <!-- Research Paper -->
+        <a class="drive-folder-card reveal" href="https://drive.google.com/drive/folders/1BzjrZWncTgEcKJel-ca35VOTXPIoVQ-2?usp=sharing" target="_blank" rel="noopener">
+          <div class="drive-folder-banner" style="background:linear-gradient(135deg,rgba(0,180,216,0.22),rgba(0,180,216,0.04))">
+            <i class="fa fa-microscope drive-folder-icon" style="color:var(--cyan)"></i>
+          </div>
+          <div class="drive-folder-body">
+            <div class="drive-folder-label"><i class="fa fa-brands fa-google-drive"></i> Google Drive Folder</div>
+            <div class="drive-folder-title">Research Paper</div>
+            <div class="drive-folder-desc">Academic research papers, literature surveys, and journal-format writeups produced across all four CardioSense components, ready for conference or journal submission.</div>
+            <div class="drive-folder-btn" style="color:var(--cyan);border-color:rgba(0,180,216,0.35);background:rgba(0,180,216,0.08)">
+              <i class="fa fa-folder-open"></i> Open in Google Drive <i class="fa fa-external-link-alt" style="margin-left:auto;font-size:0.75rem;opacity:0.7"></i>
+            </div>
+          </div>
+        </a>
+
+      </div><!-- /drive-folders-grid -->
+
+      <!-- ── How to cite ── -->
+      <div class="reveal" style="margin-top:3rem;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r);padding:2rem">
+        <h3 style="color:#fff;margin-bottom:1rem;font-size:1.1rem"><i class="fa fa-quote-left" style="color:var(--blue);margin-right:0.5rem"></i> How to Cite</h3>
+        <p style="font-size:0.85rem;color:rgba(238,242,255,0.7);margin-bottom:1rem">If you reference any component of the CardioSense project in academic work, please use the following format:</p>
+        <div style="background:var(--bg-primary);border:1px solid var(--border);border-radius:8px;padding:1rem 1.5rem;font-family:'Fira Code',monospace;font-size:0.8rem;color:rgba(238,242,255,0.8);line-height:1.8">
+          [Author Surname, Initial]. (2026). <em style="color:var(--cyan)">[Component Title]</em>. SLIIT Research Project 25-26J-337: CardioSense — AI-Powered Cardiovascular Disease Prediction &amp; Monitoring System. Sri Lanka Institute of Information Technology.
+        </div>
+        <p style="font-size:0.8rem;color:var(--text-muted);margin-top:0.8rem"><i class="fa fa-info-circle"></i> All research documents are submitted academic work and are shared for reference purposes only.</p>
+      </div>
+
+    </div>
+  </section>
+
+</div><!-- /page-content -->
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-bottom" style="padding-top:2rem;border-top:1px solid var(--border)">
+      <a href="index.html" class="nav-brand"><span class="heart">❤</span> CardioSense <span class="nav-badge">25-26J-337</span></a>
+      <span style="font-size:0.82rem;color:var(--text-muted)">© <span id="year"></span> SLIIT Research Project. Supervisor: Mrs. Manori Gamage</span>
+    </div>
+  </div>
+</footer>
+<script src="js/main.js"></script>
+</body>
+</html>

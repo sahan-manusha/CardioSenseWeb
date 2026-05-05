@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Milestones | CardioSense Research</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Rajdhani:wght@500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="css/style.css">
+<style>
+.milestone-card{
+    background:var(--bg-card);
+    border:1px solid var(--border);
+    border-radius:var(--r);
+    padding:2.5rem;
+    margin-bottom:1.5rem;
+    transition:var(--transition);
+    position:relative;
+    overflow:hidden;
+}
+.milestone-card::before{
+    content:'';
+    position:absolute;
+    left:0;top:0;bottom:0;
+    width:4px;
+}
+.m1::before{background:var(--red)}
+.m2::before{background:var(--purple)}
+.m3::before{background:var(--blue)}
+.m4::before{background:var(--cyan)}
+.m5::before{background:var(--green)}
+.milestone-card:hover{background:var(--bg-card-hover);transform:translateX(4px)}
+.milestone-header{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:1rem;margin-bottom:1.2rem}
+.milestone-meta{display:flex;gap:1rem;flex-wrap:wrap;align-items:center}
+.status-badge{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:30px;font-size:0.75rem;font-weight:700;letter-spacing:0.04em}
+.status-done{background:rgba(6,214,160,0.15);color:var(--green);border:1px solid rgba(6,214,160,0.3)}
+.status-ongoing{background:rgba(255,209,102,0.15);color:var(--yellow);border:1px solid rgba(255,209,102,0.3)}
+.status-upcoming{background:rgba(136,146,176,0.15);color:var(--text-muted);border:1px solid rgba(136,146,176,0.2)}
+.deliverable-list{display:flex;flex-direction:column;gap:0.5rem}
+.deliverable-item{display:flex;align-items:center;gap:0.7rem;font-size:0.88rem;color:rgba(238,242,255,0.8);padding:0.5rem 0;border-bottom:1px solid rgba(255,255,255,0.04)}
+.deliverable-item:last-child{border-bottom:none}
+.deliverable-item i{flex-shrink:0}
+.team-deliverables{display:grid;grid-template-columns:repeat(2,1fr);gap:0.8rem;margin-top:1rem}
+.team-del{background:rgba(255,255,255,0.03);border-radius:var(--r-sm);padding:1rem;border:1px solid var(--border)}
+.team-del h5{font-size:0.82rem;margin-bottom:0.5rem}
+.marks-display{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;border-radius:30px;background:rgba(6,214,160,0.1);border:1px solid rgba(6,214,160,0.3);font-size:0.82rem;font-weight:700;color:var(--green)}
+.milestone-num{font-size:5rem;font-weight:900;font-family:'Rajdhani',sans-serif;opacity:0.04;position:absolute;top:-10px;right:20px;line-height:1;pointer-events:none;color:#fff}
+.date-pill{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:30px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);font-size:0.78rem;color:var(--text-muted)}
+.date-pill i{font-size:0.7rem}
+</style>
+</head>
+<body>
+<nav class="navbar">
+  <div class="navbar-inner">
+    <a href="index.html" class="nav-brand"><span class="heart">❤</span> CardioSense <span class="nav-badge">25-26J-337</span></a>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="domain.html">Domain</a>
+      <div class="nav-dropdown">
+        <button class="nav-drop-btn" style="color:#fff;background:rgba(255,255,255,0.06)">Milestones <span class="arrow">▾</span></button>
+        <div class="dropdown-menu">
+          <a href="#proposal">Project Proposal <span class="drop-meta">Aug 2025</span></a>
+          <div class="dropdown-divider"></div>
+          <a href="#pp1">Progress Presentation I <span class="drop-meta">Nov 2025</span></a>
+          <div class="dropdown-divider"></div>
+          <a href="#pp2">Progress Presentation II <span class="drop-meta">Mar 2026</span></a>
+          <div class="dropdown-divider"></div>
+          <a href="#final">Final Assessment <span class="drop-meta">May 2026</span></a>
+        </div>
+      </div>
+      <a href="documents.html">Documents</a>
+      <a href="presentations.html">Presentations</a>
+      <a href="about.html">About Us</a>
+      <a href="contact.html" class="nav-cta">Contact</a>
+    </div>
+    <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="page-content">
+
+<div class="page-hero">
+  <div class="container">
+    <div class="section-label" style="justify-content:center">Project Timeline</div>
+    <h1 class="display-2" style="color:#fff">Research Milestones</h1>
+    <p>Track our research journey from initial proposal through to the final assessment</p>
+    <div style="display:flex;justify-content:center;gap:1.5rem;flex-wrap:wrap;margin-top:1.5rem">
+      <span class="status-badge status-done"><i class="fa fa-check-circle"></i> Completed</span>
+      <span class="status-badge status-upcoming"><i class="fa fa-clock"></i> Upcoming</span>
+    </div>
+  </div>
+</div>
+
+<section class="section">
+  <div class="container" style="max-width:900px">
+
+    <!-- ═══ MILESTONE 1 — PROPOSAL ═══ -->
+    <div id="proposal" class="milestone-card m1 reveal">
+      <div class="milestone-num">01</div>
+      <div class="milestone-header">
+        <div>
+          <div style="display:flex;align-items:center;gap:0.8rem;margin-bottom:0.5rem">
+            <span style="width:36px;height:36px;border-radius:10px;background:rgba(230,57,70,0.2);display:flex;align-items:center;justify-content:center;font-size:1rem;color:var(--red);flex-shrink:0"><i class="fa fa-file-contract"></i></span>
+            <h3 style="color:#fff;font-size:1.4rem">Project Proposal</h3>
+          </div>
+          <div class="milestone-meta">
+            <span class="date-pill"><i class="fa fa-calendar"></i> August 2025</span>
+            <span class="status-badge status-done"><i class="fa fa-check-circle"></i> Completed</span>
+          </div>
+        </div>
+        <div class="marks-display"><i class="fa fa-star"></i> Marks: Awaiting Results</div>
+      </div>
+      <p>The project proposal phase involves defining the research scope, literature survey, identifying research gaps, formulating problem statements, and establishing clear objectives for each component. Individual proposals are submitted per team member.</p>
+      <div class="team-deliverables">
+        <div class="team-del">
+          <h5 style="color:var(--red)"><i class="fa fa-user"></i> Malalagama D.D. (IT22126856)</h5>
+          <div class="deliverable-list">
+            <div class="deliverable-item"><i class="fa fa-check text-green" style="color:var(--green)"></i> Literature survey on NLP-ML CVD prediction</div>
+            <div class="deliverable-item"><i class="fa fa-check text-green" style="color:var(--green)"></i> Research gap analysis for hybrid frameworks</div>
+            <div class="deliverable-item"><i class="fa fa-check text-green" style="color:var(--green)"></i> Objective and methodology proposal</div>
+          </div>
+        </div>
+        <div class="team-del">
+          <h5 style="color:var(--cyan)"><i class="fa fa-user"></i> Athukorala A.A.S.M. (IT22296146)</h5>
+          <div class="deliverable-list">
+            <div class="deliverable-item"><i class="fa fa-check" style="color:var(--green)"></i> Literature survey on CNN/ViT for CXR</div>
+            <div class="deliverable-item"><i class="fa fa-check" style="color:var(--green)"></i> CIVIA system architecture proposal</div>
+            <div class="deliverable-item"><i class="fa fa-check" style="color:var(--green)"></i> Dataset feasibility (NIH/CheXpert)</div>
+          </div>
+        </div>
+        <div class="team-del">
+          <h5 style="color:var(--green)"><i class="fa fa-user"></i> Randini H.M.R. (IT22638854)</h5>
+          <div class="deliverable-list">
+            <div class="deliverable-item"><i class="fa fa-check" style="color:var(--green)"></i> AHA/WHO guideline integration plan</div>
+            <div class="deliverable-item"><i class="fa fa-check" style="color:var(--green)"></i> Recommendation engine architecture</div>
+            <div class="deliverable-item"><i class="fa fa-check" style="color:var(--green)"></i> Business potential analysis</div>
+          </div>
+        </div>
+        <div class="team-del">
+          <h5 style="color:var(--blue)"><i class="fa fa-user"></i> Kuruneru S.G. (IT22230706)</h5>
+          <div class="deliverable-list">
+            <div class="deliverable-item"><i class="fa fa-check" style="color:var(--green)"></i> Mental health AI framework proposal</div>
+            <div class="deliverable-item"><i class="fa fa-check" style="color:var(--green)"></i> PHQ-9/GAD-7 integration strategy</div>
+            <div class="deliverable-item"><i class="fa fa-check" style="color:var(--green)"></i> Doctor dashboard concept</div>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:1.5rem;padding-top:1.2rem;border-top:1px solid var(--border)">
+        <a href="documents.html" class="btn btn-sm btn-outline" style="border-color:rgba(230,57,70,0.4);color:var(--red)"><i class="fa fa-file-pdf"></i> View Proposal Documents</a>
+      </div>
+    </div>
+
+    <!-- ═══ MILESTONE 2 — PP1 ═══ -->
+    <div id="pp1" class="milestone-card m2 reveal">
+      <div class="milestone-num">02</div>
+      <div class="milestone-header">
+        <div>
+          <div style="display:flex;align-items:center;gap:0.8rem;margin-bottom:0.5rem">
+            <span style="width:36px;height:36px;border-radius:10px;background:rgba(114,9,183,0.2);display:flex;align-items:center;justify-content:center;font-size:1rem;color:#c77dff;flex-shrink:0"><i class="fa fa-presentation-screen"></i></span>
+            <h3 style="color:#fff;font-size:1.4rem">Progress Presentation I</h3>
+          </div>
+          <div class="milestone-meta">
+            <span class="date-pill"><i class="fa fa-calendar"></i> November 2025</span>
+            <span class="status-badge status-done"><i class="fa fa-check-circle"></i> Completed</span>
+          </div>
+        </div>
+        <div class="marks-display"><i class="fa fa-star"></i> Marks: Awaiting Results</div>
+      </div>
+      <p>Progress Presentation I demonstrates the initial implementation, preliminary model training results, dataset preparation completion, and early proof-of-concept outputs for each research component.</p>
+      <div class="deliverable-list">
+        <div class="deliverable-item"><i class="fa fa-check-circle" style="color:var(--green)"></i> Data collection and preprocessing pipeline completed for all components</div>
+        <div class="deliverable-item"><i class="fa fa-check-circle" style="color:var(--green)"></i> Baseline ML models trained (Logistic Regression, Decision Trees) with initial benchmarks</div>
+        <div class="deliverable-item"><i class="fa fa-check-circle" style="color:var(--green)"></i> NLP pipeline for symptom extraction implemented and tested</div>
+        <div class="deliverable-item"><i class="fa fa-check-circle" style="color:var(--green)"></i> DenseNet-121 fine-tuning initiated on NIH ChestX-ray14 dataset</div>
+        <div class="deliverable-item"><i class="fa fa-check-circle" style="color:var(--green)"></i> Recommendation rule engine prototype with AHA/WHO guidelines mapping</div>
+        <div class="deliverable-item"><i class="fa fa-check-circle" style="color:var(--green)"></i> Chatbot UI prototype with basic PHQ-9 question flow demonstrated</div>
+        <div class="deliverable-item"><i class="fa fa-check-circle" style="color:var(--green)"></i> System architecture finalised; Flask backend and Firebase integration active</div>
+      </div>
+      <div style="margin-top:1.5rem;padding-top:1.2rem;border-top:1px solid var(--border)">
+        <a href="presentations.html" class="btn btn-sm btn-outline" style="border-color:rgba(114,9,183,0.4);color:#c77dff"><i class="fa fa-file-powerpoint"></i> View PP1 Slides</a>
+      </div>
+    </div>
+
+    <!-- ═══ MILESTONE 3 — PP2 ═══ -->
+    <div id="pp2" class="milestone-card m3 reveal">
+      <div class="milestone-num">03</div>
+      <div class="milestone-header">
+        <div>
+          <div style="display:flex;align-items:center;gap:0.8rem;margin-bottom:0.5rem">
+            <span style="width:36px;height:36px;border-radius:10px;background:rgba(67,97,238,0.2);display:flex;align-items:center;justify-content:center;font-size:1rem;color:#7b9cff;flex-shrink:0"><i class="fa fa-chart-line"></i></span>
+            <h3 style="color:#fff;font-size:1.4rem">Progress Presentation II</h3>
+          </div>
+          <div class="milestone-meta">
+            <span class="date-pill"><i class="fa fa-calendar"></i> March 2026</span>
+            <span class="status-badge status-done"><i class="fa fa-check-circle"></i> Completed</span>
+          </div>
+        </div>
+        <div class="marks-display"><i class="fa fa-check-circle"></i> Submitted</div>
+      </div>
+      <p>Progress Presentation II showcased advanced model development, optimised performance metrics, integrated system components, and completed implementation with full evaluation results across all four components.</p>
+      <div class="deliverable-list">
+        <div class="deliverable-item"><i class="fa fa-check" style="color:var(--green)"></i> C1 LogReg+TF-IDF (97.5% acc) and C3 XGBoost+Bootstrap (ROC-AUC 0.9951) optimised and deployed</div>
+        <div class="deliverable-item"><i class="fa fa-check" style="color:var(--green)"></i> DenseNet-121 model achieving target AUROC on CheXpert validation set with Grad-CAM integration</div>
+        <div class="deliverable-item"><i class="fa fa-check" style="color:var(--green)"></i> Full recommendation engine with confidence scoring and 15-label diet plan generation</div>
+        <div class="deliverable-item"><i class="fa fa-check" style="color:var(--green)"></i> TinyLlama-1.1B QLoRA fine-tuned chatbot with PHQ-9/GAD-7 assessment fully operational</div>
+        <div class="deliverable-item"><i class="fa fa-check" style="color:var(--green)"></i> Integrated CardioSense web application with all 4 components functional</div>
+        <div class="deliverable-item"><i class="fa fa-check" style="color:var(--green)"></i> Complete system integration with Firebase backend and PDF report generation</div>
+        <div class="deliverable-item"><i class="fa fa-check" style="color:var(--green)"></i> User acceptance testing and system evaluation completed</div>
+      </div>
+      <div style="margin-top:1.5rem;padding-top:1.2rem;border-top:1px solid var(--border)">
+        <a href="presentations.html" class="btn btn-sm btn-outline"><i class="fa fa-file-powerpoint"></i> View PP2 Slides (When Available)</a>
+      </div>
+    </div>
+
+    <!-- ═══ MILESTONE 4 — FINAL ═══ -->
+    <div id="final" class="milestone-card m4 reveal">
+      <div class="milestone-num">04</div>
+      <div class="milestone-header">
+        <div>
+          <div style="display:flex;align-items:center;gap:0.8rem;margin-bottom:0.5rem">
+            <span style="width:36px;height:36px;border-radius:10px;background:rgba(0,180,216,0.2);display:flex;align-items:center;justify-content:center;font-size:1rem;color:var(--cyan);flex-shrink:0"><i class="fa fa-trophy"></i></span>
+            <h3 style="color:#fff;font-size:1.4rem">Final Assessment</h3>
+          </div>
+          <div class="milestone-meta">
+            <span class="date-pill"><i class="fa fa-calendar"></i> May 2026</span>
+            <span class="status-badge status-upcoming"><i class="fa fa-clock"></i> Upcoming</span>
+          </div>
+        </div>
+        <div class="marks-display"><i class="fa fa-clock"></i> Marks: TBD</div>
+      </div>
+      <p>The final assessment presents the completed CardioSense system with all research components fully implemented, evaluated, and documented. A comprehensive research paper and final report are submitted alongside the live system demonstration.</p>
+      <div class="deliverable-list">
+        <div class="deliverable-item"><i class="fa fa-clock" style="color:var(--text-muted)"></i> Complete CardioSense system with all 4 AI components fully integrated</div>
+        <div class="deliverable-item"><i class="fa fa-clock" style="color:var(--text-muted)"></i> Research paper submitted to international journal/conference</div>
+        <div class="deliverable-item"><i class="fa fa-clock" style="color:var(--text-muted)"></i> Final technical report with comprehensive evaluation results</div>
+        <div class="deliverable-item"><i class="fa fa-clock" style="color:var(--text-muted)"></i> Live system demonstration with real CXR analysis and risk prediction</div>
+        <div class="deliverable-item"><i class="fa fa-clock" style="color:var(--text-muted)"></i> Performance benchmarks: accuracy, recall, AUROC, latency validated</div>
+        <div class="deliverable-item"><i class="fa fa-clock" style="color:var(--text-muted)"></i> Deployment documentation and user guide</div>
+      </div>
+      <div style="margin-top:1.5rem;padding-top:1.2rem;border-top:1px solid var(--border)">
+        <a href="documents.html" class="btn btn-sm btn-outline" style="border-color:rgba(0,180,216,0.4);color:var(--cyan)"><i class="fa fa-file-alt"></i> View Final Report (When Available)</a>
+      </div>
+    </div>
+
+    <!-- SUMMARY TIMELINE STRIP -->
+    <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r);padding:2rem;margin-top:1rem" class="reveal">
+      <h3 style="color:#fff;margin-bottom:1.5rem;text-align:center">Project Timeline Overview</h3>
+      <div style="display:flex;justify-content:space-between;align-items:center;position:relative">
+        <div style="position:absolute;top:50%;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--red),var(--purple),var(--blue),var(--cyan));transform:translateY(-50%);z-index:0"></div>
+        <div style="text-align:center;position:relative;z-index:1">
+          <div style="width:40px;height:40px;border-radius:50%;background:var(--red);display:flex;align-items:center;justify-content:center;margin:0 auto 0.5rem;font-size:0.85rem;font-weight:800;color:#fff;font-family:'Rajdhani',sans-serif">P</div>
+          <div style="font-size:0.72rem;color:var(--text-muted);text-align:center">Proposal<br><strong style="color:rgba(238,242,255,0.8)">Aug 2025</strong></div>
+        </div>
+        <div style="text-align:center;position:relative;z-index:1">
+          <div style="width:40px;height:40px;border-radius:50%;background:var(--purple);display:flex;align-items:center;justify-content:center;margin:0 auto 0.5rem;font-size:0.85rem;font-weight:800;color:#fff;font-family:'Rajdhani',sans-serif">PP1</div>
+          <div style="font-size:0.72rem;color:var(--text-muted);text-align:center">Progress I<br><strong style="color:rgba(238,242,255,0.8)">Nov 2025</strong></div>
+        </div>
+        <div style="text-align:center;position:relative;z-index:1">
+          <div style="width:40px;height:40px;border-radius:50%;background:var(--blue);display:flex;align-items:center;justify-content:center;margin:0 auto 0.5rem;font-size:0.85rem;font-weight:800;color:#fff;font-family:'Rajdhani',sans-serif">PP2</div>
+          <div style="font-size:0.72rem;color:var(--text-muted);text-align:center">Progress II<br><strong style="color:rgba(238,242,255,0.8)">Mar 2026</strong></div>
+        </div>
+        <div style="text-align:center;position:relative;z-index:1">
+          <div style="width:40px;height:40px;border-radius:50%;background:var(--cyan);display:flex;align-items:center;justify-content:center;margin:0 auto 0.5rem;font-size:0.85rem;font-weight:800;color:#fff;font-family:'Rajdhani',sans-serif">FA</div>
+          <div style="font-size:0.72rem;color:var(--text-muted);text-align:center">Final<br><strong style="color:rgba(238,242,255,0.8)">May 2026</strong></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+</div>
+<footer class="footer">
+  <div class="container">
+    <div class="footer-bottom" style="padding-top:2rem;border-top:1px solid var(--border)">
+      <a href="index.html" class="nav-brand"><span class="heart">❤</span> CardioSense <span class="nav-badge">25-26J-337</span></a>
+      <span style="font-size:0.82rem;color:var(--text-muted)">© <span id="year"></span> SLIIT Research Project. Supervisor: Mrs. Manori Gamage</span>
+    </div>
+  </div>
+</footer>
+<script src="js/main.js"></script>
+</body>
+</html>
